@@ -68,8 +68,7 @@
 
   <div class="container main_container">
     <div class="row">
-      <div class="col-sm-12" style="background-color:lavender;">.col-sm-12</div>
-      <div id="main_3d_image">
+      <div class="col-sm-12" id="main_3d_image">
         <div id="main_text" class="col-xs-12 col-sm-4">
           <h2>Coca Cola Great Britain</h2>
           <h3>Founded by Dr John S Pemberton</h3>
@@ -115,11 +114,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-4" style="background-color:lightcyan;">.col-sm-6</div>
-      <div class="col-sm-4" style="background-color:lightgray;">.col-sm-6</div>
-      <div class="col-sm-4" style="background-color:lightcyan;">.col-sm-6</div>
     </div>
   </div>
 
