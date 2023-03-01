@@ -22,7 +22,6 @@
 <body>
 
   <nav class="navbar sticky-top navbar-expand-sm navbar_coca_cola">
-    
     <!-- Brand -->
     <div class="logo">
       <a class="navbar-brand" href="#">
@@ -33,8 +32,6 @@
         <p>Refreshing the world, one story at a time</p>
       </a>
     </div>
-    
-    <div id="debug_text">Lab4</div>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=#navbarSupportedContent ">
       <span class=" navbar-toggler-icon"></span>
@@ -66,53 +63,75 @@
       </ul>
     </div>
   </nav>
-  <br>
 
-  <div class="container main_container">
-    <div class="row">
-      <div id="main_3d_image" class="col-sm-12">
-        <div id="main_text" class="col-xs-12 col-sm-4">
-          <h2>Coca Cola Great Britain</h2>
-          <h3>Founded by Dr John S Pemberton</h3>
-          <p>The Coca Cola Company is the world's leading manufacturer, marketer and distributor of non-alcoholic beverage concentrates and syrups, and produces nearly 400 brands.</p>
+  <div class="container-fluid">
+    <div class="main_contents">
+      <div class="row">
+        <!-- 3D model -->
+        <div class="col-sm-10">
+          <div class="card text-left">
+            <div class="card-header">
+              <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" href="coke.html">Coke</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="sprite.html">Sprite</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="pepper.html">Pepper</a>
+                </li>
+              </ul>
+            </div>
+            <!-- Place 3d model code here -->
+            <div id="main_3d_image"></div>
+            <div class="card-body">
+              <h5 class="card-subtitle">Camera Views</h5>
+              <div class="camera-btns">
+                  <p class="card-text">These buttons select a range of X3D model viewpoints</p>
+                  <div class="btn-group ">
+                      <a href="#" class="btn btn-primary btn-responsive camera-font">Front</a>
+                      <a href="#" class="btn btn-secondary btn-responsive camera-font">Back</a>
+                      <a href="#" class="btn btn-success btn-responsive camera-font">Left</a>
+                      <a href="#" class="btn btn-danger btn-responsive camera-font">Right</a>
+                      <a href="#" class="btn btn-warning btn-responsive camera-font">Top</a>
+                      <a href="#" class="btn btn-outline-dark disabled btn-responsive camera-font">Off</a>
+                 </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="card">
-          <a href="#">
-            <img src="../assets/images/coca_cola.jpg" class="card-img-top img-fluid img-thumbnail" alt="Coca Cola">
-          </a>
-          <div class="card-body">
-            <h3 class="card-title">Coca Cola</h3>
-            <p class="card-text">It was 1886, John Pemberton, an Atlanta pharmacist, was inspired by simple curiosity. One afternoon, he stirred up a fragrant, caramel-coloured liquid and, when it was done, the mixture was combined with carbonated water and sampled by customers who all agreed - this new drink was something special!</p>
-            <a href="#" class="btn btn-primary">Find out more ...</a>
+        <!-- 3D image gallery -->
+        <div class="col-sm-2">
+          <div class="card text-left">
+            <div class="card-header gallery-header">Gallery</div>
+            <div class="card-body">
+              <div class="card-title">3D Image Gallery</div>
+              <a href="coke.html">
+                <img class="card-img-top img-fluid img-thumbnail" src="assets/images/coca_cola.jpg" alt="Coca Cola">
+              </a>
+              <a href="sprite.html">
+                <img class="card-img-top img-fluid img-thumbnail" src="assets/images/sprite.jpg" alt="Sprite">
+              </a>
+              <a href="pepper.html">
+                <img class="card-img-top img-fluid img-thumbnail" src="assets/images/dr_pepper.jpg" alt="DR Pepper">
+              </a>
+              <p class="card-text">3D images rendered in 3dx Max 2017 with Mental Ray</p>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-4">
-        <div class="card">
-          <a href="#">
-            <img src="../assets/images/sprite.jpg" class="card-img-top img-fluid img-thumbnail" alt="Sprite">
-          </a>
-          <div class="card-body">
-            <h3 class="card-title">Sprite</h3>
-            <p class="card-text">First introduced in 1961, crisp, refreshing, clean-tasting Sprite is now the world's leading lemon and lime flavoured soft drink and is sold in more than 190 different countries. Sprite Zero, part of our no sugar Zero range, offers the delicious lemon lime taste of Sprite without the sugar or calories.</p>
-            <a href="#" class="btn btn-primary">Find out more ...</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="card">
-          <a href="#">
-            <img src="../assets/images/dr_pepper.jpg" class="card-img-top img-fluid img-thumbnail" alt="Dr Pepper">
-          </a>
-          <div class="card-body">
-            <h3 class="card-title">Dr Pepper</h3>
-            <p class="card-text">Dr Pepper's unique, sparkling blend of 23 fruit flavours has been around for well over a century and it's still the same, with that distinctive flavour you just can't quite put your tongue on. It was created by Texas pharmacist Charles Alderton in 1885.</p>
-            <a href="#" class="btn btn-primary">Find out more ...</a>
+      <div class="row">
+        <div class="col-sm4-12">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">Coca Cola</h3>
+              <p class="card-text">It was 1886, John Pemberton, an Atlanta pharmacist, was inspired by simple curiosity.
+                One afternoon, he stirred up a fragrant, caramel-coloured liquid and, when it was done, the mixture was
+                combined with carbonated water and sampled by customers who all agreed - this new drink was something
+                special!</p>
+              <a href="#" class="btn btn-primary">Find out more ...</a>
+            </div>
           </div>
         </div>
       </div>
@@ -121,7 +140,7 @@
 
   <!-- Footer -->
   <nav class="navbar navbar-expand-sm footer">
-    <div class="container-fluid">
+    <div class="container">
       <div class="navbar-text float-left copyright">
         <p><span class="align-baseline"></span>&copy 2023 Mobile Web 3D Applications</p>
       </div>
