@@ -5,11 +5,11 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="./assets/css/custom.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./JS/custom.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <!-- our project just needs Font Awesome Solid + Brands -->
   <link rel="stylesheet" href="./assets/fontawesome/css/all.css">
   <link rel="stylesheet" href="./assets/fontawesome/css/solid.css">
@@ -17,6 +17,8 @@
   <!-- fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Oswald">
+  <!-- note custom.css is last so that it overrides any bootstrap or x3dom CSS as necessary -->
+  <link rel="stylesheet" href="./css/custom.css">
 </head>
 
 <body>
@@ -33,8 +35,8 @@
         <p>Refreshing the world, one story at a time</p>
       </a>
     </div>
-    
-    <div id="debug_text">Lab4</div>
+    <!-- TODO: remove -->
+    <div id="debug_text">Lab5</div>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=#navbarSupportedContent ">
       <span class=" navbar-toggler-icon"></span>
@@ -46,12 +48,8 @@
           <a class="nav-link active" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link 1</a>
+          <a class="nav-link" href="#" data-toggle="popover" data-trigger="hover" data-placement="bottom" title="About Web 3D Applications" data-content="3D Apps is a final year and postgraduate module ...">About</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link 2</a>
-        </li>
-
         <!-- Dropdown -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -62,6 +60,9 @@
             <a class="dropdown-item" href="#">Link 2</a>
             <a class="dropdown-item" href="#">Link 3</a>
           </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
         </li>
       </ul>
     </div>
