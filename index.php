@@ -6,14 +6,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../assets/css/custom.css">
+  <link rel="stylesheet" href="./assets/css/custom.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   <!-- our project just needs Font Awesome Solid + Brands -->
-  <link rel="stylesheet" href="../assets/fontawesome/css/all.css">
-  <link rel="stylesheet" href="../assets/fontawesome/css/solid.css">
-  <link rel="stylesheet" href="../assets/fontawesome/css/fontawesome.css">
+  <link rel="stylesheet" href="./assets/fontawesome/css/all.css">
+  <link rel="stylesheet" href="./assets/fontawesome/css/solid.css">
+  <link rel="stylesheet" href="./assets/fontawesome/css/fontawesome.css">
   <!-- fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Oswald">
@@ -83,7 +83,7 @@
       <div class="col-sm-4">
         <div class="card">
           <a href="#">
-            <img src="../assets/images/coca_cola.jpg" class="card-img-top img-fluid img-thumbnail" alt="Coca Cola">
+            <img src="./assets/images/coca_cola.jpg" class="card-img-top img-fluid img-thumbnail" alt="Coca Cola">
           </a>
           <div class="card-body">
             <h3 class="card-title">Coca Cola</h3>
@@ -95,7 +95,7 @@
       <div class="col-sm-4">
         <div class="card">
           <a href="#">
-            <img src="../assets/images/sprite.jpg" class="card-img-top img-fluid img-thumbnail" alt="Sprite">
+            <img src="./assets/images/sprite.jpg" class="card-img-top img-fluid img-thumbnail" alt="Sprite">
           </a>
           <div class="card-body">
             <h3 class="card-title">Sprite</h3>
@@ -107,7 +107,7 @@
       <div class="col-sm-4">
         <div class="card">
           <a href="#">
-            <img src="../assets/images/dr_pepper.jpg" class="card-img-top img-fluid img-thumbnail" alt="Dr Pepper">
+            <img src="./assets/images/dr_pepper.jpg" class="card-img-top img-fluid img-thumbnail" alt="Dr Pepper">
           </a>
           <div class="card-body">
             <h3 class="card-title">Dr Pepper</h3>
