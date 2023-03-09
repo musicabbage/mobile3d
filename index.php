@@ -9,6 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./JS/custom.js"></script>
+  <script src="./JS/swap_restyle.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <!-- our project just needs Font Awesome Solid + Brands -->
   <link rel="stylesheet" href="./assets/fontawesome/css/all.css">
@@ -22,9 +23,8 @@
 </head>
 
 <body>
-
+  <!-- Navigation bar -->
   <nav class="navbar sticky-top navbar-expand-sm navbar_coca_cola">
-    
     <!-- Brand -->
     <div class="logo">
       <a class="navbar-brand" href="#">
@@ -56,9 +56,10 @@
             Dropdown link
           </a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Link 1</a>
-            <a class="dropdown-item" href="#">Link 2</a>
-            <a class="dropdown-item" href="#">Link 3</a>
+            <a class="dropdown-item" href="javascript:swap('home')">Home</a>
+            <a class="dropdown-item" href="javascript:swap('coke')">Coka cola</a>
+            <a class="dropdown-item" href="javascript:swap('sprite')">Sprite</a>
+            <a class="dropdown-item" href="javascript:swap('pepper')">Dr Pepper</a>
           </div>
         </li>
         <li class="nav-item">
@@ -68,8 +69,8 @@
     </div>
   </nav>
   <br>
-
-  <div class="container main_container">
+  <!-- Home -->
+  <div id="home" class="container-fluid main_container">
     <div class="row">
       <div id="main_3d_image" class="col-sm-12">
         <div id="main_text" class="col-xs-12 col-sm-4">
@@ -118,6 +119,21 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Coke -->
+  <div id="coke" class="container-fluid main_container" style="display: none;">
+    <p>Merge your coke.html main contents here</p>
+  </div>
+
+  <!-- Sprite -->
+  <div id="sprite" class="container-fluid main_container" style="display: none;">
+    <p>Merge your sprite.html main contents here</p>
+  </div>
+
+  <!-- Pepper -->
+  <div id="pepper" class="container-fluid main_container" style="display: none;">
+    <p>Merge your pepper.html main contents here</p>
   </div>
 
   <!-- Footer -->
