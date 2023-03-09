@@ -62,7 +62,7 @@
 /* Method to declare your own fonts */
 @font-face {
     font-family: cocaColaFont;
-    src: url(../fonts/LOKICOLA.TTF);
+    src: url(../assets/fonts/LOKICOLA.TTF);
 }
 
 /* Extra small devices (portrait phones, less than 576px)
