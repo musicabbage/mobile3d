@@ -2,15 +2,13 @@ var xmlHttp = new XMLHttpRequest();
 var numberOfColumns = 4;
 var htmlCode = "";
 var response;
-
 $(document).ready(function () {
-    var send = "./gallery/scripts/hooks.php";
+    var send = "scripts/hook.php";
     xmlHttp.open("GET", send, true);
     xmlHttp.send();
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4) {
             //response handler code
-            alert(xmlHttp.responseText);
             response = xmlHttp.responseText.split("~");
             htmlCode += "<tr>";
             for (var i = 0; i < response.length; i++) {
