@@ -9,7 +9,9 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="./assets/JS/custom.js"></script>
+  <script src="./scripts/js/custom.js"></script>
+  <script src="./scripts/js/gallery_generator.js"></script>
+  <script src="./scripts/js/swap_restyle.js"></script>
   <!-- our project just needs Font Awesome Solid + Brands -->
   <link rel="stylesheet" href="./assets/fontawesome/css/all.css">
   <link rel="stylesheet" href="./assets/fontawesome/css/solid.css">
@@ -18,12 +20,12 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans">
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Oswald">
   <!-- note custom.css is last so that it overrides any bootstrap or x3dom CSS as necessary -->
-  <link rel="stylesheet" href="./assets/css/custom.css">
+  <link rel="stylesheet" href="./css/custom.css">
 </head>
 
-<body>
+<body id="body">
 
-  <nav class="navbar sticky-top navbar-expand-sm navbar_coca_cola">
+  <nav id="header" class="navbar sticky-top navbar-expand-sm navbar_coca_cola">
     <!-- Brand -->
     <div class="logo">
       <a class="navbar-brand" href="#">
@@ -62,6 +64,7 @@
       </ul>
     </div>
   </nav>
+  
 
   <div class="container-fluid">
     <div class="main_contents">
@@ -106,15 +109,7 @@
             <div class="card-header gallery-header">Gallery</div>
             <div class="card-body">
               <div class="card-title">3D Image Gallery</div>
-              <a href="coke.html">
-                <img class="card-img-top img-fluid img-thumbnail" src="./assets/images/coca_cola.jpg" alt="Coca Cola">
-              </a>
-              <a href="sprite.html">
-                <img class="card-img-top img-fluid img-thumbnail" src="./assets/images/sprite.jpg" alt="Sprite">
-              </a>
-              <a href="pepper.html">
-                <img class="card-img-top img-fluid img-thumbnail" src="./assets/images/dr_pepper.jpg" alt="DR Pepper">
-              </a>
+              <div class="gallery" id="gallery_coke"></div>
               <p class="card-text">3D images rendered in 3dx Max 2017 with Mental Ray</p>
             </div>
           </div>
@@ -138,10 +133,14 @@
   </div>
 
   <!-- Footer -->
-  <nav class="navbar navbar-expand-sm footer">
+  <nav id="footer" class="navbar navbar-expand-sm footer">
     <div class="container">
       <div class="navbar-text float-left copyright">
-        <p><span class="align-baseline"></span>&copy 2023 Mobile Web 3D Applications</p>
+        <p>
+          <span class="align-baseline"></span>&copy 2023 Mobile Web 3D Applications
+          <a href="javascript:changeLook()"> | Restyle</a>
+          <a href="javascript:changeBack()"> | Reset</a>
+        </p>
       </div>
       <div class="navbar-text social">
         <a href="#"><i class="fab fa-github-square fa-2x fa-pull-right"></i></a>

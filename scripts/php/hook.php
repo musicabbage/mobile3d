@@ -1,5 +1,5 @@
 <?php
-$directory = '../assets/images';
+$directory = '../../gallery/assets/images';
 $allowed_extensions = array('jpg', 'jpeg', 'png', 'gif');
 $file_parts = array();
 $response = "";

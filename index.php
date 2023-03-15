@@ -10,6 +10,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./scripts/js/custom.js"></script>
   <script src="./scripts/js/swap_restyle.js"></script>
+  <script src="./gallery/scripts/gallery_generator.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <!-- our project just needs Font Awesome Solid + Brands -->
   <link rel="stylesheet" href="./assets/fontawesome/css/all.css">

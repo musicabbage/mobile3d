@@ -374,6 +374,16 @@ h6 {
     margin-bottom: 2px;
 }
 
+.gallery .img-thumbnail {
+    background-color: rgba(255, 255, 255, 0);
+    padding: 0.25rem;
+    margin: 5px;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    max-width: 43%;
+    height: auto;
+}
+
 .camera-btns {
     /* background-color: rgba(0, 0, 255, 0.3);  */
     border-color: black; 
