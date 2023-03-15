@@ -37,7 +37,7 @@
       </a>
     </div>
     <!-- TODO: remove -->
-    <div id="debug_text">Lab5</div>
+    <div id="debug_text">Lab6</div>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=#navbarSupportedContent ">
       <span class=" navbar-toggler-icon"></span>
