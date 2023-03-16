@@ -120,6 +120,27 @@ body {
     line-height: 1.2;
 }
 
+.drinksText > h2 {
+    color: rgb(0, 0, 0);
+    font-size: 32px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.drinksText > h3 {
+    color: rgb(0, 0, 0);
+    font-size: 24px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.drinksText > p {
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
 /* logo */
 .logo {
     margin-top: 3px;

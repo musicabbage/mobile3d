@@ -5,7 +5,7 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./scripts/js/custom.js"></script>
@@ -21,6 +21,9 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Oswald">
   <!-- note custom.css is last so that it overrides any bootstrap or x3dom CSS as necessary -->
   <link rel="stylesheet" href="./css/custom.css">
+  <!-- fancybox -->
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
 </head>
 
 <body id="body">
@@ -58,7 +61,7 @@
           </a>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="javascript:swap('home')">Home</a>
-            <a class="dropdown-item" href="javascript:swap('coke')">Coka cola</a>
+            <a class="dropdown-item" href="./coke.html">Coka cola</a>
             <a class="dropdown-item" href="javascript:swap('sprite')">Sprite</a>
             <a class="dropdown-item" href="javascript:swap('pepper')">Dr Pepper</a>
           </div>
@@ -75,9 +78,9 @@
     <div class="row">
       <div id="main_3d_image" class="col-sm-12">
         <div id="main_text" class="col-xs-12 col-sm-4">
-          <h2>Coca Cola Great Britain</h2>
-          <h3>Founded by Dr John S Pemberton</h3>
-          <p>The Coca Cola Company is the world's leading manufacturer, marketer and distributor of non-alcoholic beverage concentrates and syrups, and produces nearly 400 brands.</p>
+          <div id="title_home"></div>
+          <div id="subTitle_home"></div>
+          <div id="description_home"></div>
         </div>
       </div>
     </div>
@@ -85,37 +88,39 @@
     <div class="row">
       <div class="col-sm-4">
         <div class="card">
-          <a href="#">
-            <!--assets/images/site_images/coke_can_tn.png-->
+          <a href="assets/images/render_images/coke.jpg" data-fancybox data-caption="My 3D Coke can render" class="thumbnail">
             <img src="./assets/images/site_images/coca_cola.jpg" class="card-img-top img-fluid img-thumbnail" alt="Coca Cola">
           </a>
           <div class="card-body">
-            <h3 class="card-title">Coca Cola</h3>
-            <p class="card-text">It was 1886, John Pemberton, an Atlanta pharmacist, was inspired by simple curiosity. One afternoon, he stirred up a fragrant, caramel-coloured liquid and, when it was done, the mixture was combined with carbonated water and sampled by customers who all agreed - this new drink was something special!</p>
+            <div id="title_left" class="drinksText"></div>
+            <div id="subTitle_left" class="drinksText"></div>
+            <div id="description_left" class="drinksText"></div>
             <a href="#" class="btn btn-primary">Find out more ...</a>
           </div>
         </div>
       </div>
       <div class="col-sm-4">
         <div class="card">
-          <a href="#">
+          <a href="assets/images/render_images/sprite.jpg" data-fancybox data-caption="My 3D Sprite can render" class="thumbnail">
             <img src="./assets/images/site_images/sprite.jpg" class="card-img-top img-fluid img-thumbnail" alt="Sprite">
           </a>
           <div class="card-body">
-            <h3 class="card-title">Sprite</h3>
-            <p class="card-text">First introduced in 1961, crisp, refreshing, clean-tasting Sprite is now the world's leading lemon and lime flavoured soft drink and is sold in more than 190 different countries. Sprite Zero, part of our no sugar Zero range, offers the delicious lemon lime taste of Sprite without the sugar or calories.</p>
+            <div id="title_centre" class="drinksText"></div>
+            <div id="subTitle_centre" class="drinksText"></div>
+            <div id="description_centre" class="drinksText"></div>
             <a href="#" class="btn btn-primary">Find out more ...</a>
           </div>
         </div>
       </div>
       <div class="col-sm-4">
         <div class="card">
-          <a href="#">
+        <a href="assets/images/render_images/pepper.jpg" data-fancybox data-caption="My 3D Pepper can render">
             <img src="./assets/images/site_images/dr_pepper.jpg" class="card-img-top img-fluid img-thumbnail" alt="Dr Pepper">
           </a>
           <div class="card-body">
-            <h3 class="card-title">Dr Pepper</h3>
-            <p class="card-text">Dr Pepper's unique, sparkling blend of 23 fruit flavours has been around for well over a century and it's still the same, with that distinctive flavour you just can't quite put your tongue on. It was created by Texas pharmacist Charles Alderton in 1885.</p>
+            <div id="title_right" class="drinksText"></div>
+            <div id="subTitle_right" class="drinksText"></div>
+            <div id="description_right" class="drinksText"></div>
             <a href="#" class="btn btn-primary">Find out more ...</a>
           </div>
         </div>
