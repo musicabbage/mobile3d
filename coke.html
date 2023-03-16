@@ -6,12 +6,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./scripts/js/custom.js"></script>
   <script src="./scripts/js/gallery_generator.js"></script>
   <script src="./scripts/js/swap_restyle.js"></script>
+  <script src="./scripts/js/getJsonData.js"></script>
   <!-- our project just needs Font Awesome Solid + Brands -->
   <link rel="stylesheet" href="./assets/fontawesome/css/all.css">
   <link rel="stylesheet" href="./assets/fontawesome/css/solid.css">
@@ -21,6 +22,9 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Oswald">
   <!-- note custom.css is last so that it overrides any bootstrap or x3dom CSS as necessary -->
   <link rel="stylesheet" href="./css/custom.css">
+  <!-- fancybox -->
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
 </head>
 
 <body id="body">
@@ -65,7 +69,6 @@
     </div>
   </nav>
   
-
   <div class="container-fluid">
     <div class="main_contents">
       <div class="row">
@@ -88,9 +91,9 @@
             <!-- Place 3d model code here -->
             <div id="main_3d_image"></div>
             <div class="card-body">
-              <h5 class="card-subtitle">Camera Views</h5>
+              <div id="x3dModelTitle_coke" class="card-subtitle drinksText"></div>
               <div class="camera-btns">
-                  <p class="card-text">These buttons select a range of X3D model viewpoints</p>
+                  <div id="x3dCreationMethod_coke" class="card-text drinksText">These buttons select a range of X3D model viewpoints</div>
                   <div class="btn-group ">
                       <a href="#" class="btn btn-primary btn-responsive camera-font">Front</a>
                       <a href="#" class="btn btn-secondary btn-responsive camera-font">Back</a>
@@ -108,9 +111,9 @@
           <div class="card text-left">
             <div class="card-header gallery-header">Gallery</div>
             <div class="card-body">
-              <div class="card-title">3D Image Gallery</div>
+              <div id="title_gallery" class="card-title drinksText"></div>
               <div class="gallery" id="gallery_coke"></div>
-              <p class="card-text">3D images rendered in 3dx Max 2017 with Mental Ray</p>
+              <div id="description_gallery" class="card-text drinksText"></div>
             </div>
           </div>
         </div>
@@ -119,11 +122,9 @@
         <div class="col-sm4-12">
           <div class="card">
             <div class="card-body">
-              <h3 class="card-title">Coca Cola</h3>
-              <p class="card-text">It was 1886, John Pemberton, an Atlanta pharmacist, was inspired by simple curiosity.
-                One afternoon, he stirred up a fragrant, caramel-coloured liquid and, when it was done, the mixture was
-                combined with carbonated water and sampled by customers who all agreed - this new drink was something
-                special!</p>
+              <div id="title_coke" class="card-title drinksText"></div>
+              <div id="subTitle_coke" class="card-text drinksText"></div>
+              <div id="description_coke" class="card-text drinksText"></div>
               <a href="#" class="btn btn-primary">Find out more ...</a>
             </div>
           </div>
