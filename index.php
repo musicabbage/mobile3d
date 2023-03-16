@@ -10,7 +10,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./scripts/js/custom.js"></script>
   <script src="./scripts/js/swap_restyle.js"></script>
-  <script src="./gallery/scripts/gallery_generator.js"></script>
+  <script src="./scripts/js/getJsonData.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <!-- our project just needs Font Awesome Solid + Brands -->
   <link rel="stylesheet" href="./assets/fontawesome/css/all.css">
@@ -23,9 +23,9 @@
   <link rel="stylesheet" href="./css/custom.css">
 </head>
 
-<body>
+<body id="body">
   <!-- Navigation bar -->
-  <nav class="navbar sticky-top navbar-expand-sm navbar_coca_cola">
+  <nav id="header" class="navbar sticky-top navbar-expand-sm navbar_coca_cola">
     <!-- Brand -->
     <div class="logo">
       <a class="navbar-brand" href="#">
@@ -86,7 +86,8 @@
       <div class="col-sm-4">
         <div class="card">
           <a href="#">
-            <img src="./assets/images/coca_cola.jpg" class="card-img-top img-fluid img-thumbnail" alt="Coca Cola">
+            <!--assets/images/site_images/coke_can_tn.png-->
+            <img src="./assets/images/site_images/coca_cola.jpg" class="card-img-top img-fluid img-thumbnail" alt="Coca Cola">
           </a>
           <div class="card-body">
             <h3 class="card-title">Coca Cola</h3>
@@ -98,7 +99,7 @@
       <div class="col-sm-4">
         <div class="card">
           <a href="#">
-            <img src="./assets/images/sprite.jpg" class="card-img-top img-fluid img-thumbnail" alt="Sprite">
+            <img src="./assets/images/site_images/sprite.jpg" class="card-img-top img-fluid img-thumbnail" alt="Sprite">
           </a>
           <div class="card-body">
             <h3 class="card-title">Sprite</h3>
@@ -110,7 +111,7 @@
       <div class="col-sm-4">
         <div class="card">
           <a href="#">
-            <img src="./assets/images/dr_pepper.jpg" class="card-img-top img-fluid img-thumbnail" alt="Dr Pepper">
+            <img src="./assets/images/site_images/dr_pepper.jpg" class="card-img-top img-fluid img-thumbnail" alt="Dr Pepper">
           </a>
           <div class="card-body">
             <h3 class="card-title">Dr Pepper</h3>
@@ -138,10 +139,14 @@
   </div>
 
   <!-- Footer -->
-  <nav class="navbar navbar-expand-sm footer">
+  <nav id="footer" class="navbar navbar-expand-sm footer">
     <div class="container-fluid">
       <div class="navbar-text float-left copyright">
-        <p><span class="align-baseline"></span>&copy 2023 Mobile Web 3D Applications</p>
+        <p>
+          <span class="align-baseline"></span>&copy 2023 Mobile Web 3D Applications
+          <a href="javascript:changeLook()"> | Restyle</a>
+          <a href="javascript:changeBack()"> | Reset</a>
+        </p>
       </div>
       <div class="navbar-text social">
         <a href="#"><i class="fab fa-github-square fa-2x fa-pull-right"></i></a>
