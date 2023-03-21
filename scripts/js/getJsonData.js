@@ -5,8 +5,6 @@ $(document).ready(function () {
 
     //AJAX service request to get the main text data from the json data store
     $.getJSON('./model/data.json', function (jsonObj) {
-        
-        
         console.log(jsonObj);
         //Get the home page main text data
         $('#title_home').html('<h2>' + jsonObj.pageTextData[0].title + '<h2>');
@@ -54,8 +52,12 @@ $(document).ready(function () {
         $('#description_gallery').html('<p>' + jsonObj.pageTextData[7].galleryDescription + '</p>');
 
         //Get camera contents data
-        $('#x3dCameraTitle').html('<h2>' + jsonObj.pageTextData[8].CameraTitle + '<h2>');
-        $('#x3dCameraSubtitle').html('<p>' + jsonObj.pageTextData[8].CameraSubtitle + '<p');
+        $('.x3dCameraTitle').html('<h2>' +  jsonObj.pageTextData[8].cameraTitle + '<h2>');
+        $('.x3dCameraSubtitle').html('<p>' + jsonObj.pageTextData[8].cameraSubtitle + '</p>');
+        $('.x3dAnimationTitle').html('<h2>' + jsonObj.pageTextData[9].animationTitle + '<h2>');
+        $('.x3dAnimationSubtitle').html('<p>' + jsonObj.pageTextData[9].animationSubTitle + '</p>');
+        $('.x3dRenderTitle').html('<h2>' + jsonObj.pageTextData[10].renderTitle + '<h2>');
+        $('.x3dRenderSubtitle').html('<p>' + jsonObj.pageTextData[10].renderSubTitle + '</p>');
 
     });
 });

@@ -46,8 +46,35 @@
 			"galleryDescription": "These 3D images of the Coke can, Sprite bottle and Dr Pepper cup are rendered in 3ds Max 2017 with Mental Ray"
 		},
 		{
-			"CameraTitle": "Camera Views",
-			"CameraSubtitle": "These buttons select a range of X3D model viewpoints"
+			"cameraTitle": "Camera",
+			"cameraSubtitle": "These buttons select a range of X3D model viewpoints"
+		},
+		{
+			"animationTitle": "Animation",
+			"animationSubTitle": "Animation Options",
+			"desc": "These buttons select a range of X3D animation options"
+		},
+		{
+			"renderTitle": "Render",
+			"renderSubTitle": "Render and Lighting Options",
+			"desc": "These buttons select a limited number of render and lighting options; use the dropdown menus for more options"
+		}
+	],
+	"controlCards" : [
+		{
+			"title": "Cameras",
+			"subTitle": "Camera Views",
+			"desc": "These buttons select a range of X3D model viewpoints"
+		},
+		{
+			"title": "Animation",
+			"subTitle": "Animation Options",
+			"desc": "These buttons select a range of X3D animation options"
+		},
+		{
+			"title": "Render",
+			"subTitle": "Render and Lighting Options",
+			"desc": "These buttons select a limited number of render and lighting options; use the dropdown menus for more options"
 		}
 	]
 }
