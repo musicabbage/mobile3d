@@ -9,6 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./scripts/js/custom.js"></script>
+  <script src="./scripts/js/gallery_generator.js"></script>
   <script src="./scripts/js/swap_restyle.js"></script>
   <script src="./scripts/js/getJsonData.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">

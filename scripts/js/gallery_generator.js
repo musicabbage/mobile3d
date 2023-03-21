@@ -11,7 +11,7 @@ $(document).ready(function () {
             //response handler code
             response = xmlHttp.responseText.split("~");
             for (var i = 0; i < response.length; i++) {
-                htmlCode += '<a href="./images/gallery_images/' + response[i] + '">';
+                htmlCode += '<a href="./images/gallery_images/' + response[i] + '"data-fancybox data-caption="My 3D Coke can render" >';
                 htmlCode += '<img class="card-img-top img-thumbnail" src="./images/gallery_images/' + response[i] + '"/>';
                 htmlCode += '</a>';
             }
