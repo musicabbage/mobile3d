@@ -9,7 +9,7 @@ $(document).ready(function() {
 		$('#about').hide();
 		$('#models').hide();
 		$('#interaction').hide();
-		// $('#cokeDescription').hide();
+		$('#cokeDescription').hide();
 		$('#spriteDescription').hide(); 
 		$('#pepperDescription').hide(); 
 
