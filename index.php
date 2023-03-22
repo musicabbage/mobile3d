@@ -2,16 +2,25 @@
 <html lang="en">
 
 <head>
-  <title>Bootstrap Example</title>
+  <title>Lab6</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- 3dmodel -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/FBXLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/MTLLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/OBJLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/libs/fflate.min.js"></script>
+  <!--custom js-->
   <script src="./scripts/js/custom.js"></script>
   <script src="./scripts/js/gallery_generator.js"></script>
   <script src="./scripts/js/swap_restyle.js"></script>
   <script src="./scripts/js/getJsonData.js"></script>
+  <script src="./scripts/js/model_interactions.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <!-- our project just needs Font Awesome Solid + Brands -->
   <link rel="stylesheet" href="./assets/fontawesome/css/all.css">
@@ -139,13 +148,10 @@
               </li>
             </ul>
           </div>
-          <!-- Place 3d model code here -->
-          <div id="main_3d_image"></div>
+          <!-- todo: Place 3d model code here -->
           <div class="card-body">
             <div id="x3dModelTitle_coke" class="card-subtitle drinksText"></div>
-            <div class="model3D">
-              Put 3D model here
-            </div>
+            <div id="3dScene" class="model3D"></div>
             <div id="x3dCreationMethod_coke" class="card-text drinksText"></div>
           </div>
         </div>
@@ -169,28 +175,32 @@
     <div class="col-sm-4">
       <!-- camera card -->
       <div class="card">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle x3dCameraTitle" href="#" id="navbardrop" data-toggle="dropdown"></a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#" onclick="cameraFront();">Front</a>
-            <a class="dropdown-item" href="#" onclick="cameraBack();">Back</a>
-            <a class="dropdown-item" href="#" onclick="cameraLeft();">Left</a>
-            <a class="dropdown-item" href="#" onclick="cameraRight();">Right</a>
-            <a class="dropdown-item" href="#" onclick="cameraTop();">Top</a>
-            <a class="dropdown-item" href="#" onclick="cameraBottom();">Bottom</a>
-          </div>
-        </li>
-        <div class="card-body">
-          <div class="camera-btns">
-            <div class="btn-group ">
-              <a href="#" class="btn btn-primary btn-responsive camera-font">Front</a>
-              <a href="#" class="btn btn-secondary btn-responsive camera-font">Back</a>
-              <a href="#" class="btn btn-success btn-responsive camera-font">Left</a>
-              <a href="#" class="btn btn-danger btn-responsive camera-font">Right</a>
-              <a href="#" class="btn btn-warning btn-responsive camera-font">Top</a>
-              <a href="#" class="btn btn-outline-dark disabled btn-responsive camera-font">Off</a>
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle x3dCameraTitle" href="#" id="navbardrop" data-toggle="dropdown"></a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#" onclick="cameraFront();">Front</a>
+                <a class="dropdown-item" href="#" onclick="cameraBack();">Back</a>
+                <a class="dropdown-item" href="#" onclick="cameraLeft();">Left</a>
+                <a class="dropdown-item" href="#" onclick="cameraRight();">Right</a>
+                <a class="dropdown-item" href="#" onclick="cameraTop();">Top</a>
+                <a class="dropdown-item" href="#" onclick="cameraBottom();">Bottom</a>
+              </div>
+            </li>
+          </ul>
+          <div class="card-body">
+            <div class="camera-btns">
+              <div class="btn-group ">
+                <a href="#" class="btn btn-primary btn-responsive camera-font">Front</a>
+                <a href="#" class="btn btn-secondary btn-responsive camera-font">Back</a>
+                <a href="#" class="btn btn-success btn-responsive camera-font">Left</a>
+                <a href="#" class="btn btn-danger btn-responsive camera-font">Right</a>
+                <a href="#" class="btn btn-warning btn-responsive camera-font">Top</a>
+                <a href="#" class="btn btn-outline-dark disabled btn-responsive camera-font">Off</a>
+              </div>
+              <div class="card-subtitle drinksText x3dCameraSubtitle"></div>
             </div>
-            <div class="card-subtitle drinksText x3dCameraSubtitle"></div>
           </div>
         </div>
       </div>
@@ -204,12 +214,10 @@
         <div class="card-body">
           <div class="camera-btns">
             <div class="btn-group ">
-              <a href="#" class="btn btn-primary btn-responsive camera-font">Front</a>
-              <a href="#" class="btn btn-secondary btn-responsive camera-font">Back</a>
-              <a href="#" class="btn btn-success btn-responsive camera-font">Left</a>
-              <a href="#" class="btn btn-danger btn-responsive camera-font">Right</a>
-              <a href="#" class="btn btn-warning btn-responsive camera-font">Top</a>
-              <a href="#" class="btn btn-outline-dark disabled btn-responsive camera-font">Off</a>
+              <a href="#" class="btn btn-primary btn-responsive camera-font" onclick="spin()">RotX</a>
+              <a href="#" class="btn btn-secondary btn-responsive camera-font">RotY</a>
+              <a href="#" class="btn btn-success btn-responsive camera-font">RotZ</a>
+              <a href="#" class="btn btn-outline-dark btn-responsive camera-font" onclick="stop()">Stop</a>
             </div>
             <div class="card-subtitle drinksText x3dAnimationSubtitle"></div>
           </div>
@@ -223,12 +231,10 @@
           <div class="card-title drinksText x3dRenderTitle"></div>
           <div class="camera-btns">
             <div class="btn-group ">
-              <a href="#" class="btn btn-primary btn-responsive camera-font">Front</a>
-              <a href="#" class="btn btn-secondary btn-responsive camera-font">Back</a>
-              <a href="#" class="btn btn-success btn-responsive camera-font">Left</a>
-              <a href="#" class="btn btn-danger btn-responsive camera-font">Right</a>
-              <a href="#" class="btn btn-warning btn-responsive camera-font">Top</a>
-              <a href="#" class="btn btn-outline-dark disabled btn-responsive camera-font">Off</a>
+                <a href="#" class="btn btn-success btn-responsive camera-font">Poly</a>
+                <a href="#" class="btn btn-secondary btn-responsive camera-font" onclick="wireFrame();">Wire</a>
+                <a href="#" class="btn btn-success btn-responsive camera-font">Headlight</a>
+                <a href="#" class="btn btn-outline-dark btn-responsive camera-font">default</a>
             </div>
             <div class="card-subtitle drinksText x3dRenderSubtitle"></div>
           </div>
