@@ -231,10 +231,10 @@
           <div class="card-title drinksText x3dRenderTitle"></div>
           <div class="camera-btns">
             <div class="btn-group ">
-                <a href="#" class="btn btn-success btn-responsive camera-font">Poly</a>
-                <a href="#" class="btn btn-secondary btn-responsive camera-font" onclick="wireFrame();">Wire</a>
-                <a href="#" class="btn btn-success btn-responsive camera-font">Headlight</a>
-                <a href="#" class="btn btn-outline-dark btn-responsive camera-font">default</a>
+                <a id="btn-poly" onclick="toggleWireframe(this);" href="#" class="btn btn-success btn-responsive camera-font">Poly</a>
+                <a id="btn-wire" onclick="toggleWireframe(this);" href="#" class="btn btn-secondary btn-responsive camera-font">Wire</a>
+                <a id="btn-lights" onclick="switchOnLights(this)" href="#" class="btn btn-success btn-responsive camera-font">Headlight</a>
+                <a id="btn-default" onclick="defaultRender();" href="#" class="btn btn-outline-dark btn-responsive camera-font">default</a>
             </div>
             <div class="card-subtitle drinksText x3dRenderSubtitle"></div>
           </div>
