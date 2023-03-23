@@ -5,13 +5,21 @@ $(document).ready(function() {
 
 	function selectPage() {
 
-		$('#home').show();
+		$('#home').hide();
 		$('#about').hide();
-		$('#models').hide();
-		$('#interaction').hide();
-		$('#cokeDescription').hide();
+		$('#models').show();
+		$('#interaction').show(); 
+		$('#cokeDescription').show();
 		$('#spriteDescription').hide(); 
 		$('#pepperDescription').hide(); 
+
+		// $('#home').show();
+		// $('#about').hide();
+		// $('#models').hide();
+		// $('#interaction').hide();
+		// $('#cokeDescription').hide();
+		// $('#spriteDescription').hide(); 
+		// $('#pepperDescription').hide(); 
 
 
 		$('#navHome').click(function(){

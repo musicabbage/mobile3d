@@ -151,7 +151,7 @@
           <!-- todo: Place 3d model code here -->
           <div class="card-body">
             <div id="x3dModelTitle_coke" class="card-subtitle drinksText"></div>
-            <div id="3dScene" class="model3D"></div>
+            <div id="3dScene"></div>
             <div id="x3dCreationMethod_coke" class="card-text drinksText"></div>
           </div>
         </div>
