@@ -19,7 +19,6 @@
   <script src="./scripts/js/custom.js"></script>
   <script src="./scripts/js/gallery_generator.js"></script>
   <script src="./scripts/js/swap_restyle.js"></script>
-  <script src="./scripts/js/getJsonData.js"></script>
   <script src="./scripts/js/model_interactions.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <!-- our project just needs Font Awesome Solid + Brands -->
