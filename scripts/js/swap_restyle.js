@@ -5,51 +5,52 @@ $(document).ready(function() {
 
 	function selectPage() {
 
-		$('#home').hide();
-		$('#about').hide();
-		$('#models').show();
-		$('#interaction').show(); 
-		$('#cokeDescription').show();
-		$('#spriteDescription').hide(); 
-		$('#pepperDescription').hide(); 
-
-		// $('#home').show();
+		// $('#home').hide();
 		// $('#about').hide();
-		// $('#models').hide();
-		// $('#interaction').hide();
-		// $('#cokeDescription').hide();
+		// $('#models').show();
+		// $('#interaction').show(); 
+		// $('#cokeDescription').show();
 		// $('#spriteDescription').hide(); 
 		// $('#pepperDescription').hide(); 
 
+		$('#homeContainer').show();
+		$('#about').hide();
+		$('#modelsContainer').hide();
+		// $('#interaction').hide();
+		$('#descriptionContainer').hide();
+		// $('#cokeDescription').hide();
+		$('#spriteDescription').hide(); 
+		$('#pepperDescription').hide(); 
+
 
 		$('#navHome').click(function(){
-			$('#home').show();
+			$('#homeContainer').show();
 			$('#about').hide();
-			$('#models').hide();
-			$('#interaction').hide();
-			$('#cokeDescription').hide();
-			$('#spriteDescription').hide(); 
-			$('#pepperDescription').hide(); 	  
+			$('#modelsContainer').hide();
+			// $('#interaction').hide();
+			$('#descriptionContainer').hide();
+			// $('#spriteDescription').hide(); 
+			// $('#pepperDescription').hide(); 	  
 		});
 
 		$('#navAbout').click(function(){
-			$('#home').hide();
+			$('#homeContainer').hide();
 			$('#about').show();
-			$('#models').hide();
-			$('#interaction').hide();
-			$('#cokeDescription').hide();
-			$('#spriteDescription').hide(); 
-			$('#pepperDescription').hide(); 	  
+			$('#modelsContainer').hide();
+			// $('#interaction').hide();
+			$('#descriptionContainer').hide();
+			// $('#spriteDescription').hide(); 
+			// $('#pepperDescription').hide(); 	  
 		});
 
 		$('#navModels').click(function(){
-			$('#home').hide();
+			$('#homeContainer').hide();
 			$('#about').hide();
-			$('#models').show();
-			$('#interaction').show(); 
-			$('#cokeDescription').show();
-			$('#spriteDescription').hide(); 
-			$('#pepperDescription').hide(); 
+			$('#modelsContainer').show();
+			// $('#interaction').show(); 
+			$('#descriptionContainer').show();
+			// $('#spriteDescription').hide(); 
+			// $('#pepperDescription').hide(); 
 		});
 	}
 
@@ -59,7 +60,7 @@ $(document).ready(function() {
 			$('#coke').show();
 			$('#sprite').hide();
 			$('#pepper').hide();
-			$('#interaction').show(); 
+			// $('#interaction').show(); 
 			$('#cokeDescription').show();
 			$('#spriteDescription').hide(); 
 			$('#pepperDescription').hide(); 
@@ -69,7 +70,7 @@ $(document).ready(function() {
 			$('#coke').hide();
 			$('#sprite').show();
 			$('#pepper').hide();
-			$('#interaction').show(); 
+			// $('#interaction').show(); 
 			$('#cokeDescription').hide();
 			$('#spriteDescription').show();
 			$('#pepperDescription').hide();  	  	  
@@ -79,7 +80,7 @@ $(document).ready(function() {
 			$('#coke').hide();
 			$('#sprite').hide();
 			$('#pepper').show();
-			$('#interaction').show(); 
+			// $('#interaction').show(); 
 			$('#cokeDescription').hide();
 			$('#spriteDescription').hide(); 
 			$('#pepperDescription').show(); 	   
