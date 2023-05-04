@@ -1,6 +1,6 @@
 <?php
 require './application/model/homeModel.php';
-
+require './application/model/modelsModel.php';
 // Create the controller class for the MVC design pattern
 class Controller {
 
@@ -14,7 +14,12 @@ class Controller {
 		$this->load = new Load(); 
 		$this->model = new Model();
 		// determine what page you are on
-		$this->$pageURI();
+		$parameters = explode("/", $pageURI);
+		$methodName = array_shift($parameters);
+		if (method_exists($this, $methodName))
+		{
+			call_user_func_array([$this, $methodName], array($parameters));
+		}
 	}
 
     // home page function
@@ -24,6 +29,34 @@ class Controller {
         $data = $homeModel->dbGetData();
         $this->load->view('main', $data);
 	}
+
+    function loadModelsInfo()
+    {
+        $homeModel = new ModelsModel();
+        $data = $homeModel->dbGetModels();
+        echo json_encode($data);
+    }
+
+	function loadModelInfo($modelName)
+    {
+        $homeModel = new ModelsModel();
+        $data = $homeModel->dbGetModel($modelName);
+        echo json_encode($data);
+    }
+
+    function loadModelsControls()
+    {
+        $homeModel = new ModelsModel();
+        $data = $homeModel->dbGetControls();
+        echo json_encode($data);
+    }
+
+    function loadModels()
+    {
+        $model = new ModelsModel();
+        $data = $model->dbGetModels();
+        $this->load->view('loadModels', $data);
+    }
 
 	function apiCreateTable()
 	{

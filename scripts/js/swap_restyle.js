@@ -47,10 +47,8 @@ $(document).ready(function() {
 			$('#homeContainer').hide();
 			$('#about').hide();
 			$('#modelsContainer').show();
-			// $('#interaction').show(); 
 			$('#descriptionContainer').show();
-			// $('#spriteDescription').hide(); 
-			// $('#pepperDescription').hide(); 
+			$('#modelsContainer').load('/application/view/models.php');
 		});
 	}
 

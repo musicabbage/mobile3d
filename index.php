@@ -1,5 +1,4 @@
 <?php
-// You can define any configuration variables here
 
 // Display error message cause by your PHP scripts
 error_reporting(E_ALL | E_STRICT);

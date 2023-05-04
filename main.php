@@ -17,9 +17,7 @@
   <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/libs/fflate.min.js"></script>
   <!--custom js-->
   <script src="./scripts/js/custom.js"></script>
-  <script src="./scripts/js/gallery_generator.js"></script>
   <script src="./scripts/js/swap_restyle.js"></script>
-  <script src="./scripts/js/model_interactions.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <!-- our project just needs Font Awesome Solid + Brands -->
   <link rel="stylesheet" href="./assets/fontawesome/css/all.css">
@@ -81,7 +79,7 @@
   <!-- End home page -->
   <!-- Start X3D models and 3D Image Gallery -->
   <div id="modelsContainer">
-    <?php include "application/view/models.php";?>
+    
   </div>
   <!-- End X3D Models and Gallery -->
   <!-- Footer -->
