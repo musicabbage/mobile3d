@@ -1,91 +1,337 @@
-let scene, camera, renderer, cube, can, light;
-let isSpinning = false, showWireframe = false, switchOnLight = false;
-
-$(document).ready(function () {
-    console.log("FBX Player loaded");
-    init();
+const Perspective = Object.freeze({
+    NONE: "none",
+    FRONT: "front",
+    BACK: "back",
+    LEFT: "left",
+    RIGHT: "right",
+    TOP: "top",
+    BOTTOM: "bottom"
 });
 
-function init() {
-    container = document.getElementById("3dScene")
+let scene, camera, renderer, cube, model, light, lights = {};
+let isSpinning = false, isShowWireframe = false, switchOnLight = false;
+let rotationTarget = []; //x, y, z
+let rotationDirection = 0; //0: no spinning, 1: x, 2: y, 3: z
+let cameraX = 0;
+var cameraPerspective = Perspective.NONE;
+
+function init3dScene() {
+    container = document.getElementById("fbxmodel")
     scene = new THREE.Scene();
-    scene.position.y = -5;
 
-    camera = new THREE.PerspectiveCamera(5, window.innerWidth / window.innerHeight, 1, 5000);
-    camera.position.z = 300;
-    
+    var aspect = window.innerWidth / window.innerHeight;
+    camera = new THREE.PerspectiveCamera(45, aspect, 1, 1000); //new THREE.PerspectiveCamera(3, aspect, 10, 1000);
+    camera.position.set(0, 0, 20);
+    camera.up = new THREE.Vector3(0, 1, 0);
+    camera.lookAt(new THREE.Vector3(0, 0, 0));
 
-    hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.0);
-    hemiLight.position.set(0, 1, 0);
-    scene.add(hemiLight);
-
-    // directionalLight = new THREE.DirectionalLight(0xffffff, 1.0);
-    // directionalLight.position.set(0, 1, 0);
-    // scene.add(directionalLight);
 
     renderer = new THREE.WebGLRenderer({ alpha: true });
     ratio = $(container).height() / window.innerHeight;
-    // TODO: resize renderer to fit container
-    // renderer.setSize(window.innerWidth * ratio, $(container).height());
     renderer.setSize(window.innerWidth, window.innerHeight);
     container.appendChild(renderer.domElement);
 
     controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.addEventListener('change', renderer);
+}
 
+function reloadModel(modelName) {
     const fbxLoader = new THREE.FBXLoader();
-
-    fbxLoader.load('../../assets/fbx/coke_1.fbx', (object) => {
-        can = object
-        scene.add(can);
+    fbxLoader.load('../../assets/fbx/' + modelName, (object) => {
+        scene.remove(model);
+        model = object
+        scene.add(model);
         animate();
     });
 }
 
+function switchLight(lightName) {
+    console.log("switchLight: " + lightName);
+
+    var light = scene.getObjectByName(lightName);
+    if (light == null) {
+        var light = lights[lightName];
+        scene.add(lights[lightName]);
+    } else {
+        scene.remove(light);
+    }
+}
+
+function setDefaultLight() {
+    Object.entries(lights).forEach(([key, value]) => {
+        var light = scene.getObjectByName(key);
+        if ((key == 'AmbientLight') && (light == null)) {
+            scene.add(value);
+        } else if ((key != 'AmbientLight') && (light != null)) {
+            scene.remove(light);
+        }
+    });
+}
+
+function setupLights(lightsKeys) {
+
+    lightsKeys.forEach(element => {
+        light = createLight(element);
+        if (light != null) {
+            light.name = element;
+            lights[element] = light;
+        }
+    });
+    setDefaultLight();
+}
+
+function createLight(lightName) {
+    if (lightName == 'AmbientLight') {
+        //This light globally illuminates all objects in the scene equally.
+        const ambientLight = new THREE.AmbientLight(0xFFFFFF);
+        return ambientLight;
+    } else if (lightName == 'DirectionalLight') {
+        // White directional light at half intensity shining from the top.
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(10, 0, 0);
+        return directionalLight;
+    } else if (lightName == 'HemisphereLight') {
+        //A light source positioned directly above the scene,
+        //with color fading from the sky color to the ground colo
+        const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x404040, 1);
+        hemisphereLight.position.set(0, 1, 0);
+        return hemisphereLight;
+    } else if (lightName == 'PointLight') {
+        //A light that gets emitted from a single point in all directions. 
+        //A common use case for this is to replicate the light emitted from a bare lightbulb.
+        const pointLight = new THREE.PointLight(0xffffff, 1, 1000);
+        pointLight.position.set(10, 0, 0);
+        return pointLight;
+    } else if (lightName == 'SpotLight') {
+        //This light gets emitted from a single point in one direction,
+        //along a cone that increases in size the further from the light it gets.
+        const spotLight = new THREE.SpotLight(0xffffff);
+        spotLight.position.set(1000, 0, 0);
+        return spotLight;
+    }
+    return null;
+}
+
+function defaultLight() {
+    Object.keys(lights).forEach(element => {
+        var light = scene.getObjectByName(element);
+        if (light != null) {
+            scene.remove(light);
+        }
+    });
+}
+
+function updateCameraPerspective() {
+    if (cameraPerspective === Perspective.NONE) {
+        return;
+    }
+    var updateCameraProjection = false;
+    if (cameraPerspective === Perspective.LEFT) {
+        if ((camera.rotation.y <= Math.PI * -0.5) &&
+            (camera.position.x <= -20) &&
+            (camera.position.z <= 0)) {
+            updateCameraProjection = true;
+        }
+        if (camera.rotation.y > Math.PI * -0.5) {
+            camera.rotation.y -= 0.01;
+        }
+        if (camera.position.x > -20) {
+            camera.position.x -= 0.2;
+        }
+        if (camera.position.z > 0) {
+            camera.position.z -= 0.2;
+        }
+    } else if (cameraPerspective === Perspective.RIGHT) {
+        if ((camera.rotation.y >= Math.PI * 0.5) &&
+            (camera.position.x >= 20) &&
+            (camera.position.z <= 0)) {
+            updateCameraProjection = true;
+        }
+        if (camera.rotation.y < Math.PI * 0.5) {
+            camera.rotation.y += 0.01;
+        }
+        if (camera.position.x < 20) {
+            camera.position.x += 0.2;
+        }
+        if (camera.position.z > 0) {
+            camera.position.z -= 0.2;
+        }
+    } else if (cameraPerspective === Perspective.TOP) {
+        if ((camera.rotation.x <= Math.PI * -0.5) &&
+            (camera.position.y >= 20) &&
+            (camera.position.z <= 0)) {
+            updateCameraProjection = true;
+        }
+        if (camera.rotation.x > Math.PI * -0.5) {
+            camera.rotation.x -= 0.01;
+        }
+        if (camera.position.y < 20) {
+            camera.position.y += 0.2;
+        }
+        if (camera.position.z > 0) {
+            camera.position.z -= 0.2;
+        }
+    } else if (cameraPerspective === Perspective.BOTTOM) {
+        camera.lookAt.y -= 0.01;
+        // if ((camera.rotation.x >= Math.PI * 0.5) &&
+        //     (camera.position.y <= -20) &&
+        //     (camera.position.z <= 0)) {
+        //     updateCameraProjection = true;
+        // }
+        // if (camera.rotation.x < Math.PI * 0.5) {
+        //     camera.rotation.x += 0.01;
+        // }
+        // if (camera.position.y > -20) {
+        //     camera.position.y -= 0.2;
+        // }
+        // if (camera.position.z > 0) {
+        //     camera.position.z -= 0.2;
+        // }
+    } else if (cameraPerspective === Perspective.FRONT) {
+        if ((camera.rotation.x <= 0) &&
+            (camera.position.y <= 0) &&
+            (camera.position.z <= 20)) {
+            updateCameraProjection = true;
+        }
+        if (camera.rotation.x > 0) {
+            camera.rotation.x -= 0.01;
+        }
+        if (camera.position.y > 0) {
+            camera.position.y -= 0.2;
+        }
+        if (camera.position.z < 20) {
+            camera.position.z += 0.2;
+        }
+    } else if (cameraPerspective === Perspective.BACK) {
+        if ((camera.rotation.y >= Math.PI * 0.5) &&
+            (camera.position.y <= 0) &&
+            (camera.position.z <= -20)) {
+            updateCameraProjection = true;
+        }
+        if (camera.rotation.y < Math.PI * 0.5) {
+            camera.rotation.y += 0.01;
+        }
+        if (camera.position.y > 0) {
+            camera.position.y -= 0.2;
+        }
+        if (camera.position.z > -20) {
+            camera.position.z -= 0.2;
+        }
+    }
+
+    if (updateCameraProjection) {
+        // camera.lookAt(new THREE.Vector3(0, 0, 0));
+        camera.updateProjectionMatrix();
+        cameraPerspective = Perspective.NONE;
+    }
+}
+
+function updateCamera(perspective) {
+    console.log("updateCamera: " + perspective);
+    cameraPerspective = perspective;
+    camera.position.set(0, 0, 20);
+    camera.up = new THREE.Vector3(0, 1, 0);
+    camera.lookAt(new THREE.Vector3(0, 0, 0));
+    camera.updateProjectionMatrix();
+}
+
 function animate() {
     requestAnimationFrame(animate);
-    if (isSpinning == true) {
-        can.rotation.x += 0.01
+    resizeCanvasToDisplaySize();
+    if (cameraPerspective !== Perspective.NONE) {
+        updateCameraPerspective();
+    }
+
+    if (rotationTarget.length > 0) {
+        if (rotationTarget[0] > model.rotation.x) {
+            model.rotation.x += 0.01;
+        }
+        if (rotationTarget[1] > model.rotation.y) {
+            model.rotation.y += 0.01;
+        }
+        if (rotationTarget[2] > model.rotation.z) {
+            model.rotation.z += 0.01;
+        }
+
+        if ((rotationTarget[0] < model.rotation.x) &&
+            (rotationTarget[1] < model.rotation.y) &&
+            (rotationTarget[2] < model.rotation.z)) {
+            rotationTarget = [];
+        }
+    } else if (rotationDirection > 0) {
+        var currentRotation = 0;
+        if (rotationDirection == 1) {
+            model.rotation.x += 0.01;
+            if (model.rotation.x >= Math.PI * 2) {
+                model.rotation.x = 0;
+            }
+            currentRotation = model.rotation.x;
+            console.log("rotation.x :" + currentRotation);
+        } else if (rotationDirection == 2) {
+            model.rotation.y += 0.01;
+            if (model.rotation.y >= Math.PI * 2) {
+                model.rotation.y = 0;
+            }
+            currentRotation = model.rotation.y;
+            console.log("rotation.y :" + currentRotation);
+        } else if (rotationDirection == 3) {
+            model.rotation.z += 0.01;
+            if (model.rotation.z >= Math.PI * 2) {
+                model.rotation.z = 0;
+            }
+            currentRotation = model.rotation.z;
+            console.log("rotation.z :" + currentRotation);
+        }
     }
     renderer.render(scene, camera);
 }
 
 function wireFrame() {
-    can.traverse( function ( child ) {
+    model.traverse(function (child) {
         if (child.isMesh) {
-            child.material.wireframe = showWireframe;
+            child.material.wireframe = isShowWireframe;
         }
-    } );
+    });
 }
 
-function toggleWireframe(sender) {
-    showWireframe = sender.id == "btn-wire";
+function showWireframe() {
+    isShowWireframe = true;
     wireFrame();
 }
 
-function switchOnLights(sender) {
-    if (switchOnLight == true) {
-        return;
-    }
-    // TODO: add more lights
-    switchOnLight = true;
-    console.log("switching on lights");
-    light = new THREE.PointLight(0xFFFFFF, 1, 100);
-    light.position.set(10, 10, 10);
-    scene.add(light);
+function showPolygons() {
+    isShowWireframe = false;
+    wireFrame();
 }
 
-function defaultRender() {
-    if (switchOnLight == true && light) {
-        scene.remove(light);
-        light.dispose();
-    }
-}
-
-function spin() {
-    isSpinning = true
+function spin(direction) {
+    rotationTarget = [];
+    rotationDirection = direction;
 }
 
 function stop() {
-    isSpinning = false
+    rotationDirection = 0
+}
+
+
+// https://stackoverflow.com/questions/29884485/threejs-canvas-size-based-on-container
+function resizeCanvasToDisplaySize() {
+    // renderer.setSize($(container).width(), $(container).height());
+    const canvas = renderer.domElement;
+    // look up the size the canvas is being displayed
+    const width = $(container).width();
+    const height = $(container).height();
+    console.log("" + width + ">> " + canvas.width);
+    // renderer.setSize($(container).width(), $(container).height());
+    // renderer.setSize(width, height);
+
+    // adjust displayBuffer size to match
+    if (canvas.width !== width || canvas.height !== height) {
+        // you must pass false here or three.js sadly fights the browser
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+
+        // update any render target sizes here
+    }
 }

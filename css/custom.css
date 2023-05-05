@@ -34,10 +34,10 @@
         line-height: 1.2;
     }
 
-    /* .model3D {
-        height: 110px;
-        width: 100px;
-    } */
+    #fbxmodel {
+        height: 210px;
+        width: 200px;
+    }
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -48,10 +48,10 @@
         line-height: 1.2;
     }
 
-    /* .model3D {
-        height: 380px;
-        width: 100px;
-    } */
+    #fbxmodel {
+        height: 280px;
+        width: 200px;
+    }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -459,14 +459,14 @@ h6 {
     border: 1px solid transparent;
 }
 
-/* .model3D  {
+#fbxmodel  {
     background-color: rgba(255, 255, 255, 0.2); 
     border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 1.0);
+    /* border: 1px solid rgba(0, 0, 0, 1.0); */
     padding: 2px;
-    height: 200px;
-    /* width: 200px; */
-} */
+    height: 500px;
+    width: 500px;
+}
 
 X3D, x3d {
     border-radius: 5px;

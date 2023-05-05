@@ -51,6 +51,16 @@ class Controller {
         echo json_encode($data);
     }
 
+	function loadLightOptions()
+	{
+		echo json_encode([
+		'AmbientLight' => 'Ambient Light', 
+		'DirectionalLight' => 'Directional Light', 
+		'HemisphereLight' => 'Hemisphere Light', 
+		'PointLight' => 'Point Light', 
+		'SpotLight' => 'Spot Light']);
+	}
+
     function loadModels()
     {
         $model = new ModelsModel();
