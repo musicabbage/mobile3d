@@ -1,26 +1,102 @@
 <script src="./scripts/js/models_generator.js"></script>
 <script src="./scripts/js/model_interactions.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-<div id="models" class="main_contents">
+<div id="models" class="main_contents container-fluid">
     <div class="row">
         <!-- 3D model -->
-        <div class="col-sm-10">
+        <div class="col-sm-8">
             <div class="card text-left">
                 <div class="card-header">
-                    <ul id="modelsTabs" class="nav nav-tabs card-header-tabs"></ul>
+                    <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                            <div id="modelsTabs" class="btn-group-justified mr-2" role="group" aria-label="First group"></div>
+                        </div>
+                        <div class="input-group custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="switchwire" onclick="showWireframe(this);">
+                            <label class="custom-control-label" for="switchwire">show wire</label>
+                        </div>
+                    </div>
                 </div>
-                <!-- todo: Place 3d model code here -->
                 <div class="card-body">
-                    <div id="fbxModelTitle" class="card-subtitle drinksText"></div>
-                    <div id="fbxmodel"></div>
-                    <div id="fbxCreationMethod" class="card-text drinksText"></div>
+                    <div class="container-fluid">
+                        <div>
+                            <h3>Lights</h3>
+                        </div>
+                        <div class="row mb-3" id="lightsContainer"></div>
+                        <div id="fbxmodel"></div>
+                        <div id="fbxCreationMethod" class="card-text drinksText"></div>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- 3D image gallery -->
-        <div class="col-sm-2">
+        <!-- Start the interaction panels -->
+        <div class="col-sm-4">
+            <!-- camera card -->
+            <div class="card" id="fbxCameraControl">
+                <div class="card-header d-flex align-content-stretch">
+                    <div id="subtitle"></div>
+                    <a id="popover" tabindex="0" class="btn fa-solid fa-circle-info vertical-center" role="button" data-toggle="popover" data-trigger="focus"></a>
+                </div>
+                <div class="card-body">
+                    <div class="card-body">
+                        <div class="d-flex flex-column bd-highlight">
+                            <div class="d-flex bd-highlight">
+                                <div class="p-2 flex-fill bd-highlight"></div>
+                                <a href="javascript:updateCamera('top');" class="p-2 align-self-stretch flex-fill text-center btn button-main-style camera-button">
+                                    <i class="fa-solid fa-caret-up fa-xl"></i>
+                                </a>
+                                <div class="p-2 flex-fill bd-highlight"></div>
+                            </div>
+                            <div class="d-flex bd-highlight">
+                                <a href="javascript:updateCamera('left');" class="p-2 flex-fill bd-highlight text-center btn button-main-style camera-button">
+                                    <i class="fa-solid fa-caret-left fa-xl"></i>
+                                </a>
+                                <a href="javascript:updateCamera('front');" class="p-2 flex-fill bd-highlight text-center btn button-main-style camera-button">
+                                    <i class="fa-solid fa-cube fa-xl"></i>
+                                </a>
+                                <a href="javascript:updateCamera('right');" class="p-2 flex-fill bd-highlight text-center btn button-main-style camera-button">
+                                    <i class="fa-solid fa-caret-right fa-xl"></i>
+                                </a>
+                            </div>
+                            <div class="d-flex bd-highlight">
+                                <div class="p-2 flex-fill bd-highlight"></div>
+                                <a href="javascript:updateCamera('bottom');" class="p-2 flex-fill bd-highlight text-center btn button-main-style camera-button">
+                                    <i class="fa-solid fa-caret-down fa-xl"></i>
+                                </a>
+                                <div class="p-2 flex-fill bd-highlight"></div>
+                            </div>
+                        </div>
+                        <div class="d-flex pt-3 text-center">
+                            <a href="javascript:updateCamera('front');" class="p-2 flex-fill btn button-main-style camera-button">Front</a>
+                            <a href="javascript:updateCamera('back');" class="p-2 flex-fill btn button-main-style camera-button">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- animation card -->
+            <div class="card" id="fbxAnimationControl">
+                <div class="card-header d-flex align-content-stretch">
+                    <div id="subtitle"></div>
+                    <a id="popover" tabindex="0" class="btn fa-solid fa-circle-info vertical-center" role="button" data-toggle="popover" data-trigger="focus"></a>
+                </div>
+                <div class="card-body">
+                    <div class="btn-group">
+                        <a href="javascript:spin('1');" class="mx-1 btn btn-responsive camera-font rounded-circle button-main-style rotate-button vertical-center">RotX</a>
+                        <a href="javascript:spin('2');" class="mx-1 btn btn-responsive camera-font rounded-circle button-main-style rotate-button vertical-center">RotY</a>
+                        <a href="javascript:spin('3');" class="mx-1 btn btn-responsive camera-font rounded-circle button-main-style rotate-button vertical-center">RotZ</a>
+                        <a href="javascript:stop();" class="mx-1 btn btn-responsive camera-font rounded-circle button-main-style rotate-button vertical-center">Stop</a>
+                        <a href="javascript:spin(0);" class="mx-1 btn btn-responsive camera-font rounded-circle button-main-style rotate-button vertical-center">reset</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End the interaction panels -->
+    </div>
+    <!-- 3D image gallery -->
+    <div id="modelGallery" class="row">
+        <div class="col-sm-12">
             <div class="card text-left">
-                <div class="card-header gallery-header">Gallery</div>
+                <div class="card-header card-subtitle drinksText"><h2>Gallery</h2></div>
                 <div class="card-body">
                     <div id="title_gallery" class="card-title drinksText"></div>
                     <div class="gallery" id="gallery"></div>
@@ -29,111 +105,16 @@
             </div>
         </div>
     </div>
-</div>
-<!-- Start the interaction panels -->
-<div id="interaction" class="row">
-    <div class="col-sm-4">
-        <!-- camera card -->
-        <div class="card" id="fbxCameraControl">
-            <div class="card-header">
-                <ul class="nav nav-tabs card-header-tabs">
-                    <!-- Dropdown nav-tab -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link active dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Cameras</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="javascript:cameraPerspective('front');">Front</a>
-                            <a class="dropdown-item" href="javascript:cameraPerspective('back');">Back</a>
-                            <a class="dropdown-item" href="javascript:cameraPerspective('left');">Left</a>
-                            <a class="dropdown-item" href="javascript:cameraPerspective('right');">Right</a>
-                            <a class="dropdown-item" href="javascript:cameraPerspective('top');">Top</a>
-                            <a class="dropdown-item" href="javascript:cameraPerspective('bottom');">Bottom</a>
-                        </div>
-                    </li>
-                </ul>
+    <!-- Start description contents -->
+    <div id="modelDescription" class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div id="modelDescTitle" class="card-header card-title drinksText"></div>
                 <div class="card-body">
-                    <div class="card-title drinksText" id="title"></div>
+                    <div id="modelDescSubTitle" class="card-text drinksText"></div>
+                    <div id="modelDescDescription" class="card-text drinksText"></div>
+                    <a id="modelDescLink" class="btn btn-link button-main-style">Find out more ...</a>
                 </div>
-                <div class="card-body">
-                    <div class="camera-btns">
-                        <div class="btn-group ">
-                            <a href="javascript:updateCamera('front');" class="btn btn-primary btn-responsive camera-font">Front</a>
-                            <a href="javascript:updateCamera('back');" class="btn btn-secondary btn-responsive camera-font">Back</a>
-                            <a href="javascript:updateCamera('left');" class="btn btn-success btn-responsive camera-font">Left</a>
-                            <a href="javascript:updateCamera('right');" class="btn btn-danger btn-responsive camera-font">Right</a>
-                            <a href="javascript:updateCamera('top');" class="btn btn-warning btn-responsive camera-font">Top</a>
-                            <a href="javascript:updateCamera('bottom');" class="btn btn-warning btn-responsive camera-font">Bottom</a>
-                            <a href="javascript:updateCamera('none');" class="btn btn-outline-dark btn-responsive camera-font">Off</a>
-                        </div>
-                        <div class="card-subtitle drinksText fbxCameraSubtitle" id="subtitle"></div>
-                        <div class="card-text fbxCameraDescription drinksText" id="desc"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- animation card -->
-    <div class="col-sm-4">
-        <div class="card" id="fbxAnimationControl">
-            <div class="card-body">
-                <div class="card-title drinksText" id="title"></div>
-            </div>
-            <div class="card-body">
-                <div class="camera-btns">
-                    <div class="btn-group ">
-                        <a href="javascript:spin('1');" class="btn btn-primary btn-responsive camera-font">RotX</a>
-                        <a href="javascript:spin('2');" class="btn btn-secondary btn-responsive camera-font">RotY</a>
-                        <a href="javascript:spin('3');" class="btn btn-success btn-responsive camera-font">RotZ</a>
-                        <a href="javascript:stop();" class="btn btn-outline-dark btn-responsive camera-font">Stop</a>
-                    </div>
-                    <div class="card-subtitle drinksText fbxAnimationSubtitle" id="subtitle"></div>
-                    <div class="card-text fbxAnimationDescription drinksText" id="desc"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- render card -->
-    <div class="col-sm-4">
-        <div class="card" id="fbxRenderControl">
-            <div class="card-header">
-                <ul class="nav nav-tabs card-header-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Render</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="javascript:showPolygons();">Polygon</a>
-                            <a class="dropdown-item" href="javascript:showWireframe();">Wireframe</a>
-                            <a class="dropdown-item" href="#">Vertex</a>
-                        </div>
-                    </li>
-                    <!-- Dropdown nav-tab -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Lights</a>
-                        <div id="lightsDropdownMenu" class="dropdown-menu">
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="card-body">
-                <div id="title" class="card-Title drinksText"></div>
-                <a href="javascript:showPolygons();" class="btn btn-success btn-responsive">Poly</a>
-                <a href="javascript:showWireframe();" class="btn btn-secondary btn-responsive" onclick="">Wire</a>
-                <a href="javascript:setDefaultLight(this);" class="btn btn-success btn-responsive" onclick="">AmbientLight</a>
-                <a href="javascript:defaultLight();" class="btn btn-outline-dark btn-responsive">Default</a>
-                <div class="card-subtitle drinksText fbxAnimationSubtitle" id="subtitle"></div>
-                <div id="desc" class="card-text drinksText"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End the interaction panels -->
-<!-- Start description contents -->
-<div id="modelDescription" class="row">
-    <div class="col-sm-12">
-        <div class="card">
-            <div class="card-body">
-                <div id="modelDescTitle" class="card-title drinksText"></div>
-                <div id="modelDescSubTitle" class="card-text drinksText"></div>
-                <div id="modelDescDescription" class="card-text drinksText"></div>
-                <a id="modelDescLink" href="#" class="btn btn-primary"">Find out more ...</a>
             </div>
         </div>
     </div>
