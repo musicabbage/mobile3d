@@ -23,14 +23,13 @@
   <link rel="stylesheet" href="./assets/fontawesome/css/all.css">
   <link rel="stylesheet" href="./assets/fontawesome/css/solid.css">
   <link rel="stylesheet" href="./assets/fontawesome/css/fontawesome.css">
-  <!-- fonts -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans">
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Oswald">
-  <!-- note custom.css is last so that it overrides any bootstrap or x3dom CSS as necessary -->
-  <link rel="stylesheet" href="./css/custom.css">
   <!-- fancybox -->
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+  <!-- fonts -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Oswald">
+  <link rel="stylesheet" href="./css/custom.css">
 </head>
 
 <body id="body">
@@ -47,7 +46,7 @@
       </a>
     </div>
     <!-- TODO: remove -->
-    <div id="debug_text">Lab6</div>
+    <div id="debug_text">FINAL!!!</div>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=#navbarSupportedContent ">
       <span class=" navbar-toggler-icon"></span>
