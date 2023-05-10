@@ -1,5 +1,6 @@
 <script src="./scripts/js/models_generator.js"></script>
 <script src="./scripts/js/model_interactions.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
 <div id="models" class="main_contents">
     <div class="row">
         <!-- 3D model -->

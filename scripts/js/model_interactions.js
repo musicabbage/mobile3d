@@ -19,7 +19,7 @@ function init3dScene() {
     container = document.getElementById("fbxmodel")
     scene = new THREE.Scene();
 
-    var aspect = window.innerWidth / window.innerHeight;
+    var aspect = container.innerWidth / container.innerHeight;
     camera = new THREE.PerspectiveCamera(45, aspect, 1, 1000); //new THREE.PerspectiveCamera(3, aspect, 10, 1000);
     camera.position.set(0, 0, 20);
     camera.up = new THREE.Vector3(0, 1, 0);
@@ -27,8 +27,8 @@ function init3dScene() {
 
 
     renderer = new THREE.WebGLRenderer({ alpha: true });
-    ratio = $(container).height() / window.innerHeight;
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    ratio = $(container).height() / container.innerHeight;
+    renderer.setSize(container.innerWidth, container.innerHeight);
     container.appendChild(renderer.domElement);
 
     controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -121,6 +121,54 @@ function defaultLight() {
     });
 }
 
+function resetCameraPerspective() {
+    if ((Math.abs(camera.rotation.x - 0) < 0.01) &&
+        (Math.abs(camera.rotation.y - 0) < 0.01) &&
+        (Math.abs(camera.position.x - 0) < 0.2) &&
+        (Math.abs(camera.position.y - 0) < 0.2) &&
+        (Math.abs(camera.position.z - 20) < 0.2)) {
+        return true;
+    }
+    console.log("resetCameraPerspective:" + camera.rotation.x + "," + camera.rotation.y + "," + camera.position.x + "," + camera.position.y + "," + camera.position.z);
+    
+    if (Math.abs(camera.rotation.x - 0) < 0.01) {
+        if (camera.rotation.x < -0.01) {
+            camera.rotation.x += 0.01;
+        } else {
+            camera.rotation.x -= 0.01;
+        }
+    }
+    if (Math.abs(camera.rotation.y - 0) < 0.01) {
+        if (camera.rotation.y < -0.01) {
+            camera.rotation.y += 0.01;
+        } else {
+            camera.rotation.y -= 0.01;
+        }
+    }
+    if (Math.abs(camera.position.x - 0) < 0.2) {
+        if (camera.position.x < -0.2) {
+            camera.position.x += 0.2;
+        } else {
+            camera.position.x -= 0.2;
+        }
+    }
+    if (Math.abs(camera.position.y - 0) < 0.2) {
+        if (camera.position.y < -0.2) {
+            camera.position.y += 0.2;
+        } else {
+            camera.position.y -= 0.2;
+        }
+    }
+    if (Math.abs(camera.position.z - 20) < 0.2) {
+        if (camera.position.z < -20) {
+            camera.position.z += 0.2;
+        } else {
+            camera.position.z -= 0.2;
+        }
+    }
+    return false;
+}
+
 function updateCameraPerspective() {
     if (cameraPerspective === Perspective.NONE) {
         return;
@@ -172,51 +220,82 @@ function updateCameraPerspective() {
             camera.position.z -= 0.2;
         }
     } else if (cameraPerspective === Perspective.BOTTOM) {
-        camera.lookAt.y -= 0.01;
-        // if ((camera.rotation.x >= Math.PI * 0.5) &&
-        //     (camera.position.y <= -20) &&
-        //     (camera.position.z <= 0)) {
-        //     updateCameraProjection = true;
-        // }
-        // if (camera.rotation.x < Math.PI * 0.5) {
-        //     camera.rotation.x += 0.01;
-        // }
-        // if (camera.position.y > -20) {
-        //     camera.position.y -= 0.2;
-        // }
-        // if (camera.position.z > 0) {
-        //     camera.position.z -= 0.2;
-        // }
+
+        if ((camera.rotation.x >= Math.PI * 0.5) &&
+            (camera.position.y <= -20) &&
+            (camera.position.z <= 0)) {
+            updateCameraProjection = true;
+        }
+        if (camera.rotation.x < Math.PI * 0.5) {
+            camera.rotation.x += 0.01;
+        }
+        if (camera.position.y > -20) {
+            camera.position.y -= 0.2;
+        }
+        if (camera.position.z > 0) {
+            camera.position.z -= 0.2;
+        }
     } else if (cameraPerspective === Perspective.FRONT) {
         if ((camera.rotation.x <= 0) &&
-            (camera.position.y <= 0) &&
+            (camera.position.y == 0) &&
             (camera.position.z <= 20)) {
             updateCameraProjection = true;
         }
-        if (camera.rotation.x > 0) {
-            camera.rotation.x -= 0.01;
+        if (camera.rotation.y > 0) {
+            camera.rotation.y -= 0.01;
         }
-        if (camera.position.y > 0) {
-            camera.position.y -= 0.2;
-        }
+        // if (camera.position.y != 0) {
+        //     console.log("camera.rotation.y: " + camera.rotation.y);
+        //     if (camera.position.y > 0) {
+        //         camera.position.y -= 0.2;
+        //     } else if (camera.position.y < 0) {
+        //         camera.position.y += 0.2;
+        //     }
+        // }
         if (camera.position.z < 20) {
             camera.position.z += 0.2;
         }
     } else if (cameraPerspective === Perspective.BACK) {
-        if ((camera.rotation.y >= Math.PI * 0.5) &&
-            (camera.position.y <= 0) &&
-            (camera.position.z <= -20)) {
+        if ((camera.rotation.x >= Math.PI) &&
+            (camera.position.y == 0) &&
+            (camera.position.z <= 20)) {
             updateCameraProjection = true;
         }
-        if (camera.rotation.y < Math.PI * 0.5) {
-            camera.rotation.y += 0.01;
+        if (camera.rotation.y < Math.PI) {
+            // console.log("camera.rotation.y: " + camera.rotation.y);
+            camera.rotation.y += 0.02;
         }
-        if (camera.position.y > 0) {
-            camera.position.y -= 0.2;
-        }
+        // if (camera.position.y != 0) {
+        //     console.log("camera.rotation.y: " + camera.rotation.y);
+        //     if (camera.position.y > 0) {
+        //         camera.position.y -= 0.2;
+        //     } else if (camera.position.y < 0) {
+        //         camera.position.y += 0.2;
+        //     }
+        // }
         if (camera.position.z > -20) {
             camera.position.z -= 0.2;
+            console.log("camera.position.z: " + camera.position.z);
         }
+        // if ((camera.rotation.y >= Math.PI) &&
+        //     (camera.position.y <= 0) &&
+        //     (camera.position.z <= -20)) {
+        //     updateCameraProjection = true;
+        // }
+
+        // if (camera.rotation.y < Math.PI) {
+        //     console.log("camera.rotation.y: " + camera.rotation.y);
+        //     camera.rotation.y += 0.02;
+        // }
+
+        // if (camera.position.y > 0) {
+        //     camera.position.y -= 0.2;
+        //     console.log("camera.position.y: " + camera.position.y);
+        // }
+        // if (camera.position.z > -20) {
+        //     camera.position.z -= 0.2;
+        //     console.log("camera.position.z: " + camera.position.z);
+        // }
     }
 
     if (updateCameraProjection) {
@@ -226,20 +305,79 @@ function updateCameraPerspective() {
     }
 }
 
-function updateCamera(perspective) {
-    console.log("updateCamera: " + perspective);
+function onResetCameraComplete(perspective) {
+    console.log("onResetCameraComplete: " + perspective);
     cameraPerspective = perspective;
-    camera.position.set(0, 0, 20);
-    camera.up = new THREE.Vector3(0, 1, 0);
-    camera.lookAt(new THREE.Vector3(0, 0, 0));
-    camera.updateProjectionMatrix();
+}
+
+function updateCamera(perspective) {
+    console.log("updateCamera: " + camera.position.x + ", " + camera.position.y + ", " + camera.position.z);
+    
+    // var tl = gsap.timeline({repeat: 0, repeatDelay: 0, onComplete: onResetCameraComplete, onCompleteParams: [perspective]});
+    // tl.to(camera.rotation, {
+    //     x: 0,
+    //     y: 0,
+    //     z: 0,
+    //     duration: 0.5
+    // }).to(camera.position, {
+    //     x: 0,
+    //     y: 0,
+    //     z: 20,
+    //     duration: 0.5,
+    // });
+
+    var rotationX = 0;
+    var rotationY = Math.PI * -2;
+    var rotationZ = 0;
+    var positionX = 0;
+    var positionY = 0;
+    var positionZ = 20;
+    if (perspective === Perspective.TOP) {
+        rotationX = Math.PI * -0.5;
+        positionY = 20;
+        positionZ = 0;
+    } else if (perspective === Perspective.LEFT) {
+        rotationY = Math.PI * -0.5;
+        positionX = -20;
+        positionZ = 0;
+    } else if (perspective === Perspective.RIGHT) {
+        rotationY = Math.PI * 0.5;
+        positionX = 20;
+        positionZ = 0;
+    } else if (perspective === Perspective.BOTTOM) {
+        rotationX = Math.PI * 0.5;
+        positionY = -20;
+        positionZ = 0;
+    } else if (perspective === Perspective.FRONT) {
+        rotationY = 0;
+        positionZ = 20;
+    } else if (perspective === Perspective.BACK) {
+        rotationY = Math.PI;
+        positionZ = -20;
+    }
+
+    var tl = gsap.timeline();
+    tl.to(camera.rotation, {
+        x: rotationX,
+        y: rotationY,
+        z: rotationZ,
+        duration: 1
+    })
+    .to(camera.position, {
+        x: positionX,
+        y: positionY,
+        z: positionZ,
+        duration: 1.5,
+    }, "-=1");
 }
 
 function animate() {
     requestAnimationFrame(animate);
     resizeCanvasToDisplaySize();
     if (cameraPerspective !== Perspective.NONE) {
-        updateCameraPerspective();
+        // if (resetCameraPerspective()) {
+            updateCameraPerspective();
+        // }
     }
 
     if (rotationTarget.length > 0) {
