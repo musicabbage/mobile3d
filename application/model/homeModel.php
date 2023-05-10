@@ -28,7 +28,7 @@ class HomeModel
     {
         try {
             // Prepare a statement to get all records from the `main` table
-            $sql = 'SELECT * FROM main';
+            $sql = 'SELECT main.*, models.link FROM main LEFT JOIN models ON models.Id == main.id';
             // Use PDO query() to query the database with the prepared SQL statement
             $stmt = $this->dbhandle->query($sql);
             // Set up an array to return the results to the view

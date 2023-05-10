@@ -14,6 +14,7 @@ let rotationTarget = []; //x, y, z
 let rotationDirection = 0; //0: no spinning, 1: x, 2: y, 3: z
 let cameraX = 0;
 var cameraPerspective = Perspective.NONE;
+let defaultLightName = "AmbientLight";
 
 function init3dScene() {
     container = document.getElementById("fbxmodel")
@@ -60,9 +61,9 @@ function switchLight(lightName) {
 function setDefaultLight() {
     Object.entries(lights).forEach(([key, value]) => {
         var light = scene.getObjectByName(key);
-        if ((key == 'AmbientLight') && (light == null)) {
+        if ((key == defaultLightName) && (light == null)) {
             scene.add(value);
-        } else if ((key != 'AmbientLight') && (light != null)) {
+        } else if ((key != defaultLightName) && (light != null)) {
             scene.remove(light);
         }
     });
@@ -374,51 +375,26 @@ function updateCamera(perspective) {
 function animate() {
     requestAnimationFrame(animate);
     resizeCanvasToDisplaySize();
-    if (cameraPerspective !== Perspective.NONE) {
-        // if (resetCameraPerspective()) {
-            updateCameraPerspective();
-        // }
-    }
-
-    if (rotationTarget.length > 0) {
-        if (rotationTarget[0] > model.rotation.x) {
-            model.rotation.x += 0.01;
-        }
-        if (rotationTarget[1] > model.rotation.y) {
-            model.rotation.y += 0.01;
-        }
-        if (rotationTarget[2] > model.rotation.z) {
-            model.rotation.z += 0.01;
-        }
-
-        if ((rotationTarget[0] < model.rotation.x) &&
-            (rotationTarget[1] < model.rotation.y) &&
-            (rotationTarget[2] < model.rotation.z)) {
-            rotationTarget = [];
-        }
-    } else if (rotationDirection > 0) {
-        var currentRotation = 0;
+    
+    if (rotationDirection > 0) {
         if (rotationDirection == 1) {
             model.rotation.x += 0.01;
             if (model.rotation.x >= Math.PI * 2) {
                 model.rotation.x = 0;
             }
             currentRotation = model.rotation.x;
-            console.log("rotation.x :" + currentRotation);
         } else if (rotationDirection == 2) {
             model.rotation.y += 0.01;
             if (model.rotation.y >= Math.PI * 2) {
                 model.rotation.y = 0;
             }
             currentRotation = model.rotation.y;
-            console.log("rotation.y :" + currentRotation);
         } else if (rotationDirection == 3) {
             model.rotation.z += 0.01;
             if (model.rotation.z >= Math.PI * 2) {
                 model.rotation.z = 0;
             }
             currentRotation = model.rotation.z;
-            console.log("rotation.z :" + currentRotation);
         }
     }
     renderer.render(scene, camera);
@@ -432,18 +408,19 @@ function wireFrame() {
     });
 }
 
-function showWireframe() {
-    isShowWireframe = true;
-    wireFrame();
-}
-
-function showPolygons() {
-    isShowWireframe = false;
+function showWireframe(sender) {
+    console.log(sender.checked);
+    isShowWireframe = sender.checked;
     wireFrame();
 }
 
 function spin(direction) {
     rotationTarget = [];
+    if (direction == 0) {
+        model.rotation.x = 0;
+        model.rotation.y = 0;
+        model.rotation.z = 0;
+    }
     rotationDirection = direction;
 }
 

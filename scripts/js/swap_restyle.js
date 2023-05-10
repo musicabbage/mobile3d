@@ -1,171 +1,120 @@
-$(document).ready(function() {
-	
+$(document).ready(function () {
+	var activeNavItem = $('#navHome');
 	selectPage();
 	selectModel();
 
 	function selectPage() {
 
-		// $('#home').hide();
-		// $('#about').hide();
-		// $('#models').show();
-		// $('#interaction').show(); 
-		// $('#cokeDescription').show();
-		// $('#spriteDescription').hide(); 
-		// $('#pepperDescription').hide(); 
-
-		// $('#homeContainer').show();
-		// $('#about').hide();
-		// $('#modelsContainer').hide();
-		// // $('#interaction').hide();
-		// $('#descriptionContainer').hide();
-		// // $('#cokeDescription').hide();
-		// $('#spriteDescription').hide(); 
-		// $('#pepperDescription').hide(); 
-
-		$('#homeContainer').hide();
+		$('#homeContainer').show();
 		$('#about').hide();
-		$('#modelsContainer').show();
-		$('#modelsContainer').load('/application/view/models.php');
-		// $('#interaction').hide();
-		$('#descriptionContainer').show();
-		// $('#cokeDescription').hide();
-		// $('#spriteDescription').hide(); 
-		// $('#pepperDescription').hide(); 
+		$('#modelsContainer').hide();
+		$('#descriptionContainer').hide();
 
-		$('#navHome').click(function(){
+		$('#navHome').click(function () {
 			$('#homeContainer').show();
 			$('#about').hide();
 			$('#modelsContainer').hide();
-			// $('#interaction').hide();
 			$('#descriptionContainer').hide();
-			// $('#spriteDescription').hide(); 
-			// $('#pepperDescription').hide(); 	  
+			activeNavItem.removeClass('active');
+			activeNavItem = $('#navHome');
+			$('#navHome').addClass('active');	  
 		});
 
-		$('#navAbout').click(function(){
-			$('#homeContainer').hide();
-			$('#about').show();
-			$('#modelsContainer').hide();
-			// $('#interaction').hide();
-			$('#descriptionContainer').hide();
-			// $('#spriteDescription').hide(); 
-			// $('#pepperDescription').hide(); 	  
-		});
-
-		// $('#navModels').click(function(){
-		// 	console.log(scene);
-		// 	$('#homeContainer').hide();
-		// 	$('#about').hide();
-		// 	$('#modelsContainer').show();
-		// 	// $('#interaction').show(); 
-		// 	$('#descriptionContainer').show();
-		// 	// $('#spriteDescription').hide(); 
-		// 	// $('#pepperDescription').hide(); 
-		// });
-
-		$('#navModels').click(function(){
-			
+		$('#navModels').click(function () {
 			$('#homeContainer').hide();
 			$('#about').hide();
 			$('#modelsContainer').show();
 			$('#descriptionContainer').show();
 			$('#modelsContainer').load('/application/view/models.php');
-			
-			// // if (typeof scene != "undefined") {
-			// if ($('#3dScene').length > 0) {
-			// 	console.log("scene is defined");
-			// } else {
-			// 	console.log("scene is UNdefined");
-			// 	$.ajax({
-			// 	   url: "./index.php?test",
-			// 	   success: function(data){
-			// 			//data returned from php
-			// 			// $("#modelsContainer").innerHTML = "data";
-			// 			document.getElementById("modelsContainer").innerHTML = data;
-						
-			// 			// $("#modelsContainer").html(data);
-			// 			// console.log(data);
-			// 	   }
-			// 	});
-			// }
-
+			$('#navModels').addClass('active');
+			activeNavItem.removeClass('active');
+			activeNavItem = $('#navModels');
 		});
 	}
 
 	function selectModel() {
 
-		$('#navCoke').click(function(){
+		$('#navCoke').click(function () {
 			$('#coke').show();
 			$('#sprite').hide();
 			$('#pepper').hide();
 			// $('#interaction').show(); 
 			$('#cokeDescription').show();
-			$('#spriteDescription').hide(); 
-			$('#pepperDescription').hide(); 
+			$('#spriteDescription').hide();
+			$('#pepperDescription').hide();
 		});
 
-		$('#navSprite').click(function(){
+		$('#navSprite').click(function () {
 			$('#coke').hide();
 			$('#sprite').show();
 			$('#pepper').hide();
 			// $('#interaction').show(); 
 			$('#cokeDescription').hide();
 			$('#spriteDescription').show();
-			$('#pepperDescription').hide();  	  	  
+			$('#pepperDescription').hide();
 		});
 
-		$('#navPepper').click(function(){
+		$('#navPepper').click(function () {
 			$('#coke').hide();
 			$('#sprite').hide();
 			$('#pepper').show();
-			// $('#interaction').show(); 
 			$('#cokeDescription').hide();
-			$('#spriteDescription').hide(); 
-			$('#pepperDescription').show(); 	   
+			$('#spriteDescription').hide();
+			$('#pepperDescription').show();
 		});
 	}
 
 });
 
-function swap(selected) {
-    document.getElementById('home').style.display = 'none';
-    document.getElementById('coke').style.display = 'none';
-    document.getElementById('sprite').style.display = 'none';
-    document.getElementById('pepper').style.display = 'none';
-
-    document.getElementById(selected).style.display = 'block';
-}
-
 var counter = 0;
 function changeLook() {
-    counter += 1;
-    switch (counter) {
-        case 1:
-            document.getElementById('body').style.backgroundColor = 'lightblue';
-            document.getElementById('header').style.backgroundColor = '#FF0000';
-            document.getElementById('footer').style.backgroundColor = '#FF9900';
-            break;
-        case 2:
-            document.getElementById('body').style.backgroundColor = '#FF6600';
-            document.getElementById('header').style.backgroundColor = '#FF9999';
-            document.getElementById('footer').style.backgroundColor = '#996699';
-            break;
-        case 3:
-            document.getElementById('body').style.backgroundColor = 'coral';
-            document.getElementById('header').style.backgroundColor = 'darkcyan';
-            document.getElementById('footer').style.backgroundColor = 'darksalmon';
-            break;
-        case 4:
-            counter = 0;
-            document.getElementById('body').style.backgroundColor = 'lightgrey';
-            document.getElementById('header').style.backgroundColor = 'chocolate';
-            document.getElementById('footer').style.backgroundColor = 'dimgrey';
-            break;
-    }
+	const stylesheet = document.styleSheets[7];
+	let elementRules;
+	console.log(document.styleSheets.length);
+	for (let i = 0; i < document.styleSheets.length; i++) {
+		console.log(document.styleSheets[i]);
+	}
+
+	// looping through all its rules and getting your rule
+	for (let i = 0; i < stylesheet.cssRules.length; i++) {
+		if (String(stylesheet.cssRules[i].selectorText) == '.button-main-style') {
+			elementRules = stylesheet.cssRules[i];
+			break
+		}
+	}
+
+	counter += 1;
+	switch (counter) {
+		case 1:
+			buttonColour = "#ef233c";
+			headerColour = "#d90429";
+			backgroundColor = "#edf2f4";
+			break;
+		case 2:
+			buttonColour = "#2b9348";
+			headerColour = "#264653";
+			backgroundColor = "#ffff3f";
+			break;
+		case 3:
+			buttonColour = "#89b0ae";
+			headerColour = "#ffcbf2";
+			backgroundColor = "#d8bbff";
+			break;
+		case 4:
+			counter = 0;
+			buttonColour = "#ffa69e";
+			headerColour = "#aed9e0";
+			backgroundColor = "#faf3dd";
+			break;
+	}
+
+	elementRules.style.setProperty('background', buttonColour);
+	document.getElementById('body').style.backgroundColor = backgroundColor;
+	document.getElementById('header').style.backgroundColor = headerColour;
+	document.getElementById('footer').style.backgroundColor = headerColour;
 }
 
 function changeBack() {
-    document.getElementById('body').style.backgroundColor = '#FFFFFF';
-    document.getElementById('header').style.backgroundColor = 'rgba(175,0,0,1)';
-    document.getElementById('footer').style.backgroundColor = 'rgba(175,0,0,1)';
+	counter = 0;
+	changeLook();
 }
