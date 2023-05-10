@@ -2,14 +2,56 @@
    No media query for `xs` since this is the default in Bootstrap
 */
 
-/* Small devices (landscape phones, 576px and up)*/
+/* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
-    ...
+
+    /* CSS rule to style the footer */
+    .footer {
+        background-color: #257600;
+        height: 60px;
+    }
+
+    .navbar-text>a {
+        font-size: 10px;
+    }
+
+    .navbar-text>p {
+        color: rgb(228, 75, 15);
+        font-size: 18px;
+    }
+
+    .copyright {
+        padding-top: 20px;
+    }
+
+    .social {
+        padding-top: 7px;
+    }
+
+    .btn-responsive {
+        padding: 4px 9px;
+        font-size: 60%;
+        line-height: 1.2;
+    }
+
+    #fbxmodel {
+        height: 210px;
+        width: 200px;
+    }
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-    ...
+    .btn-responsive {
+        padding: 4px 9px;
+        font-size: 130%;
+        line-height: 1.2;
+    }
+
+    #fbxmodel {
+        height: 280px;
+        width: 200px;
+    }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -30,7 +72,7 @@
 /* Method to declare your own fonts */
 @font-face {
     font-family: cocaColaFont;
-    src: url(../fonts/LOKICOLA.TTF);
+    src: url(../assets/fonts/LOKICOLA.TTF);
 }
 
 /* Extra small devices (portrait phones, less than 576px)
@@ -42,7 +84,7 @@
 body {
     padding-top: 30px;
     padding-bottom: 5px;
-    background-color: rgba(182, 231, 243, 1.0);
+    background-color: rgb(245, 245, 245);
 }
 
 .main_contents {
@@ -51,7 +93,7 @@ body {
 }
 
 #main_3d_image {
-    background-image: url(../assets/images/main_3D.jpg);
+    background-image: url(../assets/images/site_images/main_3D.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     /* The div block for the main_3d_image has no vertical size, 
@@ -86,6 +128,27 @@ body {
     font-size: 12px;
     margin: 0px;
     line-height: 1.2;
+}
+
+.drinksText > h2 {
+    color: rgb(0, 0, 0);
+    font-size: 32px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.drinksText > h3 {
+    color: rgb(0, 0, 0);
+    font-size: 24px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.drinksText > p {
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: 1.4;
 }
 
 /* logo */
@@ -141,34 +204,32 @@ Bootstrapbay Bootstrap Tutorial Part 11 — CSS Modifications to Navbar and Butt
 There is plenty more styling to do than indicated here, in mobile it still defaults to Bootstrap CSS on dropdown!
 */
 .navbar_coca_cola {
-    background-color: #760003; /* Set navbar background color */
-    /* border-color: yellow; Sets the navbar border color */
-    /* border-style: solid; */
-    border-width: 0px;
+    background-color: #d90429;
+    border-width: 1px;
     min-height: 70px;
 }
 
 /* CSS rule to overwrite the navbar-brand font color
 */
 .navbar_coca_cola .navbar-brand {
-    color: rgb(245, 235, 235);
- }
-    
+    color: #edf2f4
+}
+
 /* CSS rule to overwrite the navbar-brand font hover color
 */
 .navbar_coca_cola .navbar-brand:hover {
-    color: green;
+    color: #2b2d42
 }
 
-.navbar_coca_cola .navbar-nav > li > a {
-    color: white;  
+.navbar_coca_cola .navbar-nav>li>a {
+    color: white;
 }
 
 /* CSS rule to overwrite the bootstrap.css text hover color on the navbar
 */
-.navbar_coca_cola .navbar-nav > li > a:hover, 
-.navbar_coca_cola .navbar-nav > li > a:focus {
-    color: green;  
+.navbar_coca_cola .navbar-nav>li>a:hover {
+    color: #f5cac3;
+    border-radius: 5px;
 }
 
 .navbar_coca_cola .navbar-nav .nav-item {
@@ -177,30 +238,47 @@ There is plenty more styling to do than indicated here, in mobile it still defau
 
 /* CSS rule to overwrite the bootstrap.css rules for setting the active font color and background colour
 */
-.navbar_coca_cola .navbar-nav .nav-item > .active, 
-.navbar_coca_cola .navbar-nav > .active > a:hover, 
-.navbar_coca_cola .navbar-nav > .active > a:focus {
-    color:  #760003; /* Font color for active font */
-    background-color: #3399ff; /* Blue color for background */
+.navbar_coca_cola .navbar-nav .nav-item>.active,
+.navbar_coca_cola .navbar-nav>.active>a:focus {
+    color: #ef233c;
+    /* Font color for active font */
+    background-color: #edf2f4;
+    border-radius: 5px;
 }
 
 /* A set of CSS rules to change the Bootstrap defaults for the menu link text color, hover, background, focus
 */
-    
-/* CSS rule to overwrite the bootstrap.css text hover color on the navbar
-*/
-.navbar_coca_cola .navbar-nav > li > a:hover, 
-.navbar_coca_cola  .navbar-nav > li > a:focus {
-    color: green;  
-}
 
 /* These next two CSS rules control the style of the icon bar */
 .navbar_coca_cola .navbar-toggler {
     outline: none;
 }
 
-.navbar_coca_cola  .navbar-toggler-icon {
+.navbar_coca_cola .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1.0)' stroke-width='4' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+/* Lifted form the bootsrap.css file, and modified to emulate the nav-bar menu styling */
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+    color: #760003;
+    /* Font color for active font */
+    background-color: #3399ff;
+    /* Blue color for background */
+    border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.nav-tabs .nav-link {
+    color: white;
+    border: 1px solid transparent;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+
+/* Added this to emulate the nav-bar link styling */
+.nav-tabs .nav-link:hover {
+    color: green;
+    border: 1px solid transparent;
 }
 
 /* Let's style the dropdown menu
@@ -208,7 +286,8 @@ There is plenty more styling to do than indicated here, in mobile it still defau
 .dropdown-menu {
     text-align: -webkit-left;
     background-color: #b6e7f3;
-    margin-top: 20px; /* Experiment to move the dropdown menu down */
+    margin-top: 20px;
+    /* Experiment to move the dropdown menu down */
 }
 
 .dropdown-menu .dropdown-item {
@@ -221,11 +300,25 @@ There is plenty more styling to do than indicated here, in mobile it still defau
 }
 
 .card {
-    border: 1px solid rgba(0, 0, 0, .125);
-    /* border-radius: .25rem;*/
     margin-top: 10px;
     margin-bottom: 10px;
-    background-color: rgba(182, 231, 243, 1.0);
+    background-color: #edf2f4;
+}
+
+.card-body {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.card-text {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.card-subtitle {
+    color: rgb(0, 0, 0);
+    font-size: 32px;
 }
 
 /* Some simple CSS rules for styling p, h1 to h6, etc. in the main content’s container */
@@ -246,15 +339,16 @@ h6 {
 /* CSS rule to style the footer */
 .footer {
     color: #030303;
-    background-color: #760003; /* Set navbar footer background color same as header */
+    background-color: #d90429;
+    /* Set navbar footer background color same as header */
     height: 50px;
 }
 
-.navbar-text > a {
+.navbar-text>a {
     font-size: 10px;
 }
 
-.navbar-text > p {
+.navbar-text>p {
     color: rgb(255, 255, 255);
     font-size: 14px;
     text-decoration: none;
@@ -266,57 +360,123 @@ h6 {
 
 .social {
     padding-top: 0px;
-    width: 30%;   
+    width: 30%;
 }
 
-.fa-twitter-square:before {
-    content: "\f081";
-    color: green;
-    font-size: 1em;
+.social-buttons {
+    color: #edf2f4;
+    font-size: 3em;
 }
 
-.fa-github-square:before {
-    content: "\f092"; 
-    color: yellow;
-    font-size: 1em;
+.img-thumbnail {
+    padding: .25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    max-width: 100%;
+    height: auto;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
-.fa-google-plus-square:before {
-    content: "\f0d4"; 
-    color: blue;
-    font-size: 1em;
+.gallery .img-thumbnail {
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    max-width: 15%;
+    height: auto;
 }
 
-.fa-facebook-square:before {
-    content: "\f082";
+.button-main-style {
+    background-color: #ef233c;
+    color: white;
+    border-radius: 5px;
+    padding: 8px;
+    margin: 5px;
+} 
+
+.model-button {
+    padding: 8px;
+    margin: 5px;
+}
+
+.rotate-button {
+    padding: 2px;
+    margin: 2px;
+    width: max-content;
+    aspect-ratio: 1;
+}
+
+.camera-button {
+    border-radius: 5px;
+    padding: 2px;
+    margin: 2px;
+}
+
+.camera-btns {
+    /* background-color: rgba(0, 0, 255, 0.3);  */
+    border-color: black; 
+    border-style: solid;
+    border-width: 0px;
+    margin-top: 0px;
+    padding: 0px;
+}
+
+.camera-btns > p  {
+    font-size: 15px;
     color: red;
-    font-size: 1em; 
+    padding-left: 0px;
+    font-weight: 900; 
 }
 
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {
-
-    /* CSS rule to style the footer */
-    .footer {
-        background-color: #257600;
-        height: 60px;
-    }
-    
-    .navbar-text > a {
-        font-size: 10px;
-    }
-    
-    .navbar-text > p {
-        color: rgb(228, 75, 15);
-        font-size: 18px;
-    }
-    
-    .copyright {
-        padding-top: 20px;
-    }
-    
-    .social {
-        padding-top: 7px;
-    }
+.camera-font {
+    font-weight: 400;   
+    color: white;
 }
-    
+
+.camera-font:hover {
+    font-weight: 700;   
+    color: rgb(3, 3, 3);
+}
+
+.btn-responsive {
+    margin-right: 2px;
+    margin-bottom: 4px;
+    padding: 5px 5px;
+    font-size: 80%;
+    line-height: 1.2;
+    white-space: normal !important;
+}
+
+#fbxmodel  {
+    border-radius: 5px;
+    padding: 2px;
+    height: 400px;
+    width: 500px;
+}
+
+.btn-link {
+    border-radius: 5px;
+    color: #edf2f4;
+}
+
+.btn-link:hover {
+    background-color: #edf2f4; 
+    border-radius: 5px;
+    color: #d90429;
+}
+
+.vertical-center {
+    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+    display: flex;
+    align-items: center;
+}
+
+#debug_text {
+    display: block;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    margin-right: 20px;
+    padding-inline-start: 10px;
+    padding-inline-end: 10px;
+}
