@@ -13,15 +13,24 @@ $(document).ready(function() {
 		// $('#spriteDescription').hide(); 
 		// $('#pepperDescription').hide(); 
 
-		$('#homeContainer').show();
-		$('#about').hide();
-		$('#modelsContainer').hide();
-		// $('#interaction').hide();
-		$('#descriptionContainer').hide();
-		// $('#cokeDescription').hide();
-		$('#spriteDescription').hide(); 
-		$('#pepperDescription').hide(); 
+		// $('#homeContainer').show();
+		// $('#about').hide();
+		// $('#modelsContainer').hide();
+		// // $('#interaction').hide();
+		// $('#descriptionContainer').hide();
+		// // $('#cokeDescription').hide();
+		// $('#spriteDescription').hide(); 
+		// $('#pepperDescription').hide(); 
 
+		$('#homeContainer').hide();
+		$('#about').hide();
+		$('#modelsContainer').show();
+		$('#modelsContainer').load('/application/view/models.php');
+		// $('#interaction').hide();
+		$('#descriptionContainer').show();
+		// $('#cokeDescription').hide();
+		// $('#spriteDescription').hide(); 
+		// $('#pepperDescription').hide(); 
 
 		$('#navHome').click(function(){
 			$('#homeContainer').show();
@@ -43,12 +52,43 @@ $(document).ready(function() {
 			// $('#pepperDescription').hide(); 	  
 		});
 
+		// $('#navModels').click(function(){
+		// 	console.log(scene);
+		// 	$('#homeContainer').hide();
+		// 	$('#about').hide();
+		// 	$('#modelsContainer').show();
+		// 	// $('#interaction').show(); 
+		// 	$('#descriptionContainer').show();
+		// 	// $('#spriteDescription').hide(); 
+		// 	// $('#pepperDescription').hide(); 
+		// });
+
 		$('#navModels').click(function(){
+			
 			$('#homeContainer').hide();
 			$('#about').hide();
 			$('#modelsContainer').show();
 			$('#descriptionContainer').show();
 			$('#modelsContainer').load('/application/view/models.php');
+			
+			// // if (typeof scene != "undefined") {
+			// if ($('#3dScene').length > 0) {
+			// 	console.log("scene is defined");
+			// } else {
+			// 	console.log("scene is UNdefined");
+			// 	$.ajax({
+			// 	   url: "./index.php?test",
+			// 	   success: function(data){
+			// 			//data returned from php
+			// 			// $("#modelsContainer").innerHTML = "data";
+			// 			document.getElementById("modelsContainer").innerHTML = data;
+						
+			// 			// $("#modelsContainer").html(data);
+			// 			// console.log(data);
+			// 	   }
+			// 	});
+			// }
+
 		});
 	}
 

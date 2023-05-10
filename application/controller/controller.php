@@ -12,7 +12,7 @@ class Controller {
 	function __construct($pageURI = null) // constructor of the class
 	{
 		$this->load = new Load(); 
-		$this->model = new Model();
+		// $this->model = new Model();
 		// determine what page you are on
 		$parameters = explode("/", $pageURI);
 		$methodName = array_shift($parameters);
@@ -22,32 +22,31 @@ class Controller {
 		}
 	}
 
-    // home page function
-	function main()
+    function main()
 	{
-        $homeModel = new HomeModel();
+		$homeModel = new HomeModel();
         $data = $homeModel->dbGetData();
         $this->load->view('main', $data);
 	}
 
     function loadModelsInfo()
     {
-        $homeModel = new ModelsModel();
-        $data = $homeModel->dbGetModels();
+        $model = new ModelsModel();
+        $data = $model->dbGetModels();
         echo json_encode($data);
     }
 
 	function loadModelInfo($modelName)
     {
-        $homeModel = new ModelsModel();
-        $data = $homeModel->dbGetModel($modelName);
+        $model = new ModelsModel();
+        $data = $model->dbGetModel($modelName);
         echo json_encode($data);
     }
 
     function loadModelsControls()
     {
-        $homeModel = new ModelsModel();
-        $data = $homeModel->dbGetControls();
+        $model = new ModelsModel();
+        $data = $model->dbGetControls();
         echo json_encode($data);
     }
 
@@ -99,4 +98,3 @@ class Controller {
 		echo "Data Read Function";
 	}
 }
-?>    

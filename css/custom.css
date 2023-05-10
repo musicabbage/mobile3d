@@ -464,16 +464,16 @@ h6 {
     border-radius: 5px;
     /* border: 1px solid rgba(0, 0, 0, 1.0); */
     padding: 2px;
-    height: 500px;
+    height: 400px;
     width: 500px;
 }
 
-X3D, x3d {
+/* X3D, x3d {
     border-radius: 5px;
     border: 1px solid rgba(255, 0, 0, 1.0);
     width: 100%;
     height: 100%
-}
+} */
 
 #debug_text {
     display: block;

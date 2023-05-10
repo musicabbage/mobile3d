@@ -8,7 +8,9 @@ ini_set('display_errors',1);
 // in the specified file and copies it into the file that uses the include (or require) statement.
 // require 'application/mvc.php';
 require 'application/view/load.php';
+// require 'application/model/model.php';
 require 'application/controller/controller.php';
+
 
 $pageURI =$_SERVER['REQUEST_URI'];
 $pageURI =substr($pageURI,strrpos($pageURI,'index.php')+10);

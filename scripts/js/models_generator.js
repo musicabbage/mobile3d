@@ -3,7 +3,7 @@ var numberOfColumns = 2;
 var htmlCode = "";
 var response;
 $(document).ready(function () {
-    loadGallery();
+    // loadGallery();
     loadModelsInfo();
     loadControls();
     init3dScene();
@@ -11,13 +11,16 @@ $(document).ready(function () {
 
 function switchModel(sender) {
     console.log("switchModel: " + sender);
+    
     $.getJSON('./index.php?loadModelInfo/' + sender, function (jsonObj) {
         console.log(jsonObj);
         jsonObj.forEach(function (row) {
             $("#modelDescTitle").html('<h2>' + row['title'] + '<h2>');
             $("#modelDescSubTitle").html('<h3>' + row['subtitle'] + '</h3>');
             $("#modelDescDescription").html('<p>' + row['description'] + '</p>');
+            console.log(row['filename']);
             reloadModel(row['filename']);
+            // reloadModel('sprite_light.fbx');
         });
     });
 }
@@ -31,6 +34,7 @@ function loadModelsInfo() {
                 //
                 modelTabsHTML += '<a class="nav-link active" href="javascript:switchModel(\'' + row['name'] + '\')">' + row['name'];
                 switchModel(row['name']);
+                
             } else {
                 modelTabsHTML += '<a class="nav-link" href="javascript:switchModel(\'' + row['name'] + '\')">' + row['name'];
             }
