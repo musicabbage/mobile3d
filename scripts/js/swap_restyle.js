@@ -25,7 +25,7 @@ $(document).ready(function () {
 			$('#about').hide();
 			$('#modelsContainer').show();
 			$('#descriptionContainer').show();
-			$('#modelsContainer').load('/application/view/models.php');
+			$('#modelsContainer').load('./application/view/models.php');
 			$('#navModels').addClass('active');
 			activeNavItem.removeClass('active');
 			activeNavItem = $('#navModels');

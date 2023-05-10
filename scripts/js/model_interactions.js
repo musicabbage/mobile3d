@@ -21,7 +21,7 @@ function init3dScene() {
     scene = new THREE.Scene();
 
     var aspect = container.innerWidth / container.innerHeight;
-    camera = new THREE.PerspectiveCamera(45, aspect, 1, 1000); //new THREE.PerspectiveCamera(3, aspect, 10, 1000);
+    camera = new THREE.PerspectiveCamera(45, aspect, 1, 1000); 
     camera.position.set(0, 0, 20);
     camera.up = new THREE.Vector3(0, 1, 0);
     camera.lookAt(new THREE.Vector3(0, 0, 0));
@@ -38,7 +38,7 @@ function init3dScene() {
 
 function reloadModel(modelName) {
     const fbxLoader = new THREE.FBXLoader();
-    fbxLoader.load('../../assets/fbx/' + modelName, (object) => {
+    fbxLoader.load('./assets/fbx/' + modelName, (object) => {
         scene.remove(model);
         model = object
         scene.add(model);
