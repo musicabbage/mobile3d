@@ -6,6 +6,7 @@ $(document).ready(function () {
     loadGallery();
     loadModelsInfo();
     loadControls();
+    init3dScene();
 });
 
 function switchModel(sender) {
@@ -16,6 +17,7 @@ function switchModel(sender) {
             $("#modelDescTitle").html('<h2>' + row['title'] + '<h2>');
             $("#modelDescSubTitle").html('<h3>' + row['subtitle'] + '</h3>');
             $("#modelDescDescription").html('<p>' + row['description'] + '</p>');
+            reloadModel(row['filename']);
         });
     });
 }
@@ -49,6 +51,17 @@ function loadControls() {
             controlElement.find('#desc').html('<p>' +  row['description'] + '<p>');
         });
     });
+
+    $.getJSON('./index.php?loadLightOptions', function (jsonObj) {
+        var lightsDropdownHTML = "";
+        var availableLights = [];
+        Object.entries(jsonObj).forEach(([key, value]) => {
+            lightsDropdownHTML += '<a class="dropdown-item" href="javascript:switchLight(\'' + key + '\');">' + value + ' On/Off</a>';
+            availableLights.push(key);
+        })
+        $("#lightsDropdownMenu").html(lightsDropdownHTML);
+        setupLights(availableLights);
+    });
 }
 
 function loadGallery() {
@@ -58,7 +71,6 @@ function loadGallery() {
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4) {
             //response handler code
-            console.log(xmlHttp.responseText);
             response = xmlHttp.responseText.split("~");
             for (var i = 0; i < response.length; i++) {
                 htmlCode += '<a href="./images/gallery_images/' + response[i] + '"data-fancybox data-caption="My 3D model render" >';
