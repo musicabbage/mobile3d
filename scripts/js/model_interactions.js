@@ -38,6 +38,7 @@ function init3dScene() {
 
 function reloadModel(modelName) {
     const fbxLoader = new THREE.FBXLoader();
+    $("#switchwire").prop("checked", false);
     fbxLoader.load('./assets/fbx/' + modelName, (object) => {
         scene.remove(model);
         model = object
