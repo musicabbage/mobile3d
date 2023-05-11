@@ -10,9 +10,7 @@ const Perspective = Object.freeze({
 
 let scene, camera, renderer, cube, model, light, lights = {};
 let isSpinning = false, isShowWireframe = false, switchOnLight = false;
-let rotationTarget = []; //x, y, z
 let rotationDirection = 0; //0: no spinning, 1: x, 2: y, 3: z
-let cameraX = 0;
 var cameraPerspective = Perspective.NONE;
 let defaultLightName = "AmbientLight";
 
@@ -123,211 +121,7 @@ function defaultLight() {
     });
 }
 
-function resetCameraPerspective() {
-    if ((Math.abs(camera.rotation.x - 0) < 0.01) &&
-        (Math.abs(camera.rotation.y - 0) < 0.01) &&
-        (Math.abs(camera.position.x - 0) < 0.2) &&
-        (Math.abs(camera.position.y - 0) < 0.2) &&
-        (Math.abs(camera.position.z - 20) < 0.2)) {
-        return true;
-    }
-    console.log("resetCameraPerspective:" + camera.rotation.x + "," + camera.rotation.y + "," + camera.position.x + "," + camera.position.y + "," + camera.position.z);
-    
-    if (Math.abs(camera.rotation.x - 0) < 0.01) {
-        if (camera.rotation.x < -0.01) {
-            camera.rotation.x += 0.01;
-        } else {
-            camera.rotation.x -= 0.01;
-        }
-    }
-    if (Math.abs(camera.rotation.y - 0) < 0.01) {
-        if (camera.rotation.y < -0.01) {
-            camera.rotation.y += 0.01;
-        } else {
-            camera.rotation.y -= 0.01;
-        }
-    }
-    if (Math.abs(camera.position.x - 0) < 0.2) {
-        if (camera.position.x < -0.2) {
-            camera.position.x += 0.2;
-        } else {
-            camera.position.x -= 0.2;
-        }
-    }
-    if (Math.abs(camera.position.y - 0) < 0.2) {
-        if (camera.position.y < -0.2) {
-            camera.position.y += 0.2;
-        } else {
-            camera.position.y -= 0.2;
-        }
-    }
-    if (Math.abs(camera.position.z - 20) < 0.2) {
-        if (camera.position.z < -20) {
-            camera.position.z += 0.2;
-        } else {
-            camera.position.z -= 0.2;
-        }
-    }
-    return false;
-}
-
-function updateCameraPerspective() {
-    if (cameraPerspective === Perspective.NONE) {
-        return;
-    }
-    var updateCameraProjection = false;
-    if (cameraPerspective === Perspective.LEFT) {
-        if ((camera.rotation.y <= Math.PI * -0.5) &&
-            (camera.position.x <= -20) &&
-            (camera.position.z <= 0)) {
-            updateCameraProjection = true;
-        }
-        if (camera.rotation.y > Math.PI * -0.5) {
-            camera.rotation.y -= 0.01;
-        }
-        if (camera.position.x > -20) {
-            camera.position.x -= 0.2;
-        }
-        if (camera.position.z > 0) {
-            camera.position.z -= 0.2;
-        }
-    } else if (cameraPerspective === Perspective.RIGHT) {
-        if ((camera.rotation.y >= Math.PI * 0.5) &&
-            (camera.position.x >= 20) &&
-            (camera.position.z <= 0)) {
-            updateCameraProjection = true;
-        }
-        if (camera.rotation.y < Math.PI * 0.5) {
-            camera.rotation.y += 0.01;
-        }
-        if (camera.position.x < 20) {
-            camera.position.x += 0.2;
-        }
-        if (camera.position.z > 0) {
-            camera.position.z -= 0.2;
-        }
-    } else if (cameraPerspective === Perspective.TOP) {
-        if ((camera.rotation.x <= Math.PI * -0.5) &&
-            (camera.position.y >= 20) &&
-            (camera.position.z <= 0)) {
-            updateCameraProjection = true;
-        }
-        if (camera.rotation.x > Math.PI * -0.5) {
-            camera.rotation.x -= 0.01;
-        }
-        if (camera.position.y < 20) {
-            camera.position.y += 0.2;
-        }
-        if (camera.position.z > 0) {
-            camera.position.z -= 0.2;
-        }
-    } else if (cameraPerspective === Perspective.BOTTOM) {
-
-        if ((camera.rotation.x >= Math.PI * 0.5) &&
-            (camera.position.y <= -20) &&
-            (camera.position.z <= 0)) {
-            updateCameraProjection = true;
-        }
-        if (camera.rotation.x < Math.PI * 0.5) {
-            camera.rotation.x += 0.01;
-        }
-        if (camera.position.y > -20) {
-            camera.position.y -= 0.2;
-        }
-        if (camera.position.z > 0) {
-            camera.position.z -= 0.2;
-        }
-    } else if (cameraPerspective === Perspective.FRONT) {
-        if ((camera.rotation.x <= 0) &&
-            (camera.position.y == 0) &&
-            (camera.position.z <= 20)) {
-            updateCameraProjection = true;
-        }
-        if (camera.rotation.y > 0) {
-            camera.rotation.y -= 0.01;
-        }
-        // if (camera.position.y != 0) {
-        //     console.log("camera.rotation.y: " + camera.rotation.y);
-        //     if (camera.position.y > 0) {
-        //         camera.position.y -= 0.2;
-        //     } else if (camera.position.y < 0) {
-        //         camera.position.y += 0.2;
-        //     }
-        // }
-        if (camera.position.z < 20) {
-            camera.position.z += 0.2;
-        }
-    } else if (cameraPerspective === Perspective.BACK) {
-        if ((camera.rotation.x >= Math.PI) &&
-            (camera.position.y == 0) &&
-            (camera.position.z <= 20)) {
-            updateCameraProjection = true;
-        }
-        if (camera.rotation.y < Math.PI) {
-            // console.log("camera.rotation.y: " + camera.rotation.y);
-            camera.rotation.y += 0.02;
-        }
-        // if (camera.position.y != 0) {
-        //     console.log("camera.rotation.y: " + camera.rotation.y);
-        //     if (camera.position.y > 0) {
-        //         camera.position.y -= 0.2;
-        //     } else if (camera.position.y < 0) {
-        //         camera.position.y += 0.2;
-        //     }
-        // }
-        if (camera.position.z > -20) {
-            camera.position.z -= 0.2;
-            console.log("camera.position.z: " + camera.position.z);
-        }
-        // if ((camera.rotation.y >= Math.PI) &&
-        //     (camera.position.y <= 0) &&
-        //     (camera.position.z <= -20)) {
-        //     updateCameraProjection = true;
-        // }
-
-        // if (camera.rotation.y < Math.PI) {
-        //     console.log("camera.rotation.y: " + camera.rotation.y);
-        //     camera.rotation.y += 0.02;
-        // }
-
-        // if (camera.position.y > 0) {
-        //     camera.position.y -= 0.2;
-        //     console.log("camera.position.y: " + camera.position.y);
-        // }
-        // if (camera.position.z > -20) {
-        //     camera.position.z -= 0.2;
-        //     console.log("camera.position.z: " + camera.position.z);
-        // }
-    }
-
-    if (updateCameraProjection) {
-        // camera.lookAt(new THREE.Vector3(0, 0, 0));
-        camera.updateProjectionMatrix();
-        cameraPerspective = Perspective.NONE;
-    }
-}
-
-function onResetCameraComplete(perspective) {
-    console.log("onResetCameraComplete: " + perspective);
-    cameraPerspective = perspective;
-}
-
 function updateCamera(perspective) {
-    console.log("updateCamera: " + camera.position.x + ", " + camera.position.y + ", " + camera.position.z);
-    
-    // var tl = gsap.timeline({repeat: 0, repeatDelay: 0, onComplete: onResetCameraComplete, onCompleteParams: [perspective]});
-    // tl.to(camera.rotation, {
-    //     x: 0,
-    //     y: 0,
-    //     z: 0,
-    //     duration: 0.5
-    // }).to(camera.position, {
-    //     x: 0,
-    //     y: 0,
-    //     z: 20,
-    //     duration: 0.5,
-    // });
-
     var rotationX = 0;
     var rotationY = Math.PI * -2;
     var rotationZ = 0;
@@ -416,7 +210,6 @@ function showWireframe(sender) {
 }
 
 function spin(direction) {
-    rotationTarget = [];
     if (direction == 0) {
         model.rotation.x = 0;
         model.rotation.y = 0;
@@ -437,17 +230,11 @@ function resizeCanvasToDisplaySize() {
     // look up the size the canvas is being displayed
     const width = $(container).width();
     const height = $(container).height();
-    console.log("" + width + ">> " + canvas.width);
-    // renderer.setSize($(container).width(), $(container).height());
-    // renderer.setSize(width, height);
-
     // adjust displayBuffer size to match
     if (canvas.width !== width || canvas.height !== height) {
         // you must pass false here or three.js sadly fights the browser
         renderer.setSize(width, height);
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
-
-        // update any render target sizes here
     }
 }

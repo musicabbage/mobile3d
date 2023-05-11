@@ -19,7 +19,6 @@ function switchModel(sender) {
             $("#modelDescTitle").html('<h2>' + row['title'] + '<h2>');
             $("#modelDescSubTitle").html('<h3>' + row['subtitle'] + '</h3>');
             $("#modelDescDescription").html('<p>' + row['description'] + '</p>');
-            // $("#modelDescLink").href = row['link'];
             $("#modelDescLink").attr('href', row['link']);
             reloadModel(row['filename']);
         });
