@@ -2,7 +2,7 @@
   <div class="row">
     <div id="main_3d_image" class="col-sm-12">
       <div id="main_text" class="col-xs-12 col-sm-4">
-        <div id="title_home"><h2><?= $data['name'] ?></h2></div>
+        <div><h2 id="title_home"><?= $data['name'] ?></h2></div>
         <div id="subTitle_home"><h3><?= $data['subtitle'] ?></h3></div>
         <div id="description_home"><p><?= $data['description'] ?></p></div>
       </div>

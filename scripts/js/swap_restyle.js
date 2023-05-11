@@ -112,6 +112,7 @@ function changeLook() {
 	document.getElementById('body').style.backgroundColor = backgroundColor;
 	document.getElementById('header').style.backgroundColor = headerColour;
 	document.getElementById('footer').style.backgroundColor = headerColour;
+	document.getElementById('title_home').style.color = headerColour;
 }
 
 function changeBack() {
