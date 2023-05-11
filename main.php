@@ -115,10 +115,10 @@
         </p>
       </div>
       <div class="navbar-text social">
-        <a href="#"><i class="fab fa-github-square fa-2x fa-pull-right social-buttons"></i></a>
-        <a href="#"><i class="fab fa-google-plus-square fa-2x fa-pull-right social-buttons"></i></a>
-        <a href="#"><i class="fab fa-twitter-square fa-2x fa-pull-right social-buttons"></i></a>
-        <a href="#"><i class="fab fa-facebook-square fa-2x fa-pull-right social-buttons"></i></a>
+        <a href="https://github.com/"><i class="fab fa-github-square fa-2x fa-pull-right social-buttons"></i></a>
+        <a href="https://www.instagram.com/explore/tags/cocacola/"><i class="fab fa-instagram-square fa-2x fa-pull-right social-buttons"></i></a>
+        <a href="https://twitter.com/CocaCola"><i class="fab fa-twitter-square fa-2x fa-pull-right social-buttons"></i></a>
+        <a href="https://www.facebook.com/cocacolaGB"><i class="fab fa-facebook-square fa-2x fa-pull-right social-buttons"></i></a>
       </div>
     </div>
   </nav>

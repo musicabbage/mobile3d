@@ -71,25 +71,25 @@ var counter = 0;
 function changeLook() {
 	const stylesheet = document.styleSheets[7];
 	let elementRules;
-	console.log(document.styleSheets.length);
-	for (let i = 0; i < document.styleSheets.length; i++) {
-		console.log(document.styleSheets[i]);
-	}
+	let navItemRules;
 
 	// looping through all its rules and getting your rule
 	for (let i = 0; i < stylesheet.cssRules.length; i++) {
-		if (String(stylesheet.cssRules[i].selectorText) == '.button-main-style') {
+		console.log(String(stylesheet.cssRules[i].selectorText));
+		var style = String(stylesheet.cssRules[i].selectorText);
+		if (style == '.button-main-style') {
 			elementRules = stylesheet.cssRules[i];
-			break
+		} else if (style.includes(".nav-item > .active")) {
+			navItemRules = stylesheet.cssRules[i];
 		}
 	}
-
+console.log(counter);
 	counter += 1;
 	switch (counter) {
 		case 1:
-			buttonColour = "#ef233c";
-			headerColour = "#d90429";
-			backgroundColor = "#edf2f4";
+			buttonColour = "#ffa69e";
+			headerColour = "#aed9e0";
+			backgroundColor = "#faf3dd";
 			break;
 		case 2:
 			buttonColour = "#2b9348";
@@ -103,13 +103,15 @@ function changeLook() {
 			break;
 		case 4:
 			counter = 0;
-			buttonColour = "#ffa69e";
-			headerColour = "#aed9e0";
-			backgroundColor = "#faf3dd";
+			buttonColour = "#ef233c";
+			headerColour = "#d90429";
+			backgroundColor = "#edf2f4";
 			break;
 	}
 
 	elementRules.style.setProperty('background', buttonColour);
+	navItemRules.style.setProperty('color', headerColour);
+	navItemRules.style.setProperty('background', backgroundColor);
 	document.getElementById('body').style.backgroundColor = backgroundColor;
 	document.getElementById('header').style.backgroundColor = headerColour;
 	document.getElementById('footer').style.backgroundColor = headerColour;
