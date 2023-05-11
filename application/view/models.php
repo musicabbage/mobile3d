@@ -11,7 +11,7 @@
                         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                             <div id="modelsTabs" class="btn-group-justified mr-2" role="group" aria-label="First group"></div>
                         </div>
-                        <div class="input-group custom-control custom-switch">
+                        <div id="wire-checkbox" class="input-group custom-control custom-switch">
                             <input type="checkbox" class="custom-control-input" id="switchwire" onclick="showWireframe(this);">
                             <label class="custom-control-label" for="switchwire">show wire</label>
                         </div>
@@ -96,7 +96,9 @@
     <div id="modelGallery" class="row">
         <div class="col-sm-12">
             <div class="card text-left">
-                <div class="card-header card-subtitle drinksText"><h2>Gallery</h2></div>
+                <div class="card-header card-subtitle drinksText">
+                    <h2>Gallery</h2>
+                </div>
                 <div class="card-body">
                     <div id="title_gallery" class="card-title drinksText"></div>
                     <div class="gallery" id="gallery"></div>

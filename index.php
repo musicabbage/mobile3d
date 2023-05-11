@@ -6,9 +6,7 @@ ini_set('display_errors',1);
 
 // The require or include statement takes all the text/code/markup that exists 
 // in the specified file and copies it into the file that uses the include (or require) statement.
-// require 'application/mvc.php';
 require 'application/view/load.php';
-// require 'application/model/model.php';
 require 'application/controller/controller.php';
 
 
