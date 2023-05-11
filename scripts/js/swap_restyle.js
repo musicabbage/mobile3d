@@ -15,6 +15,7 @@ $(document).ready(function () {
 			$('#about').hide();
 			$('#modelsContainer').hide();
 			$('#descriptionContainer').hide();
+			//switch tab's active state
 			activeNavItem.removeClass('active');
 			activeNavItem = $('#navHome');
 			$('#navHome').addClass('active');	  
@@ -97,8 +98,8 @@ function changeLook() {
 			break;
 		case 3:
 			buttonColour = "#89b0ae";
-			headerColour = "#ffcbf2";
-			backgroundColor = "#d8bbff";
+			headerColour = "#d8bbff";
+			backgroundColor = "#ffcbf2";
 			break;
 		case 4:
 			counter = 0;
